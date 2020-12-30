@@ -24,9 +24,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/startbootstrap-sb-admin/dist/css/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src\\js\\jQuery\\jquery-3.5.1.slim.min.js",
+              "src\\js\\datatables\\jquery.dataTables.min.js",
+              "src\\js\\bootstrap\\dataTables.bootstrap4.min.js",
+              "src\\js\\bootstrap\\bootstrap.bundle.min.js",
+              "src\\js\\charts\\Chart.min.js",
+              "src\\js\\fontAwesome\\all.min.js"
+            ]
           },
           "configurations": {
             "production": {

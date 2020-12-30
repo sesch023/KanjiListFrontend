@@ -6,6 +6,25 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    window.onload = function() {
+      let sidebar = document.getElementById("sidebarToggle");
+      if(sidebar) {
+        sidebar.onclick = function (evt) {
+          evt.preventDefault();
+          document.body.classList.toggle("sb-sidenav-toggled");
+        }
+      }
+
+      let path = window.location.href;
+      let elements = document.querySelectorAll("#layoutSidenav_nav .sb-sidenav a.nav-link");
+      for(let i = 0; i < elements.length; i++){
+        if ((elements[i].href === path) || (window.location.pathname === "/" && elements[i].pathname === "/index.html")) {
+          elements[i].classList.add("active");
+        }
+      }
+    }
+  </script>
 </head>
 <body>
   <app-root></app-root>
