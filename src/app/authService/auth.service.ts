@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 import config from '../../config';
 
@@ -19,17 +19,30 @@ export class AuthenticationService {
   }
 
   login(email, password): Observable<string> {
-    return this.http.post<any>(`${config.apiUrl}/api/login`, { email, password })
-      .pipe(map(() => {
-        console.log(email);
-        localStorage.setItem('currentUserMail', JSON.stringify(email));
-        this.currentUserSubject.next(email);
-        return email;
-      }));
+    if (!this.currentUserValue) {
+      return this.http.post<any>(`${config.apiUrl}/api/login`, {email, password}, {withCredentials: true})
+        .pipe(map(() => {
+          console.log(email);
+          localStorage.setItem('currentUserMail', JSON.stringify(email));
+          this.currentUserSubject.next(email);
+          return email;
+        }));
+    } else {
+      throwError('The User is already logged in!');
+    }
   }
 
-  logout(): void {
-    localStorage.removeItem('currentUserMail');
-    this.currentUserSubject.next(null);
+  logout(): Observable<void> {
+    if (this.currentUserValue) {
+      return this.http.post<any>(`${config.apiUrl}/api/logout`, {}, {withCredentials: true})
+        .pipe(map(() => {
+          console.log(this.currentUserValue);
+          localStorage.removeItem('currentUserMail');
+          this.currentUserSubject.next(null);
+          return;
+        }));
+    } else {
+      throwError('The User is not logged in!');
+    }
   }
 }

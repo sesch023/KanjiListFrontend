@@ -70,7 +70,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "KanjiListFrontend:build"
+            "browserTarget": "KanjiListFrontend:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

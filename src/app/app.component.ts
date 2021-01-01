@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {AuthenticationService} from './authService/auth.service';
+import {Router} from '@angular/router';
+import {AlertService} from './alertService/alert.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +11,23 @@ import {AuthenticationService} from './authService/auth.service';
 })
 export class AppComponent {
   title = 'KanjiListFrontend';
-  authenticationService: AuthenticationService;
+  currentUser: string;
   constructor(
-     authenticationService: AuthenticationService,
+     private authenticationService: AuthenticationService,
+     private router: Router,
+     private alertService: AlertService
   ) {
-    this.authenticationService = authenticationService;
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  logout(): void {
+    this.authenticationService.logout()
+      .subscribe(
+        data => {
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
 }
