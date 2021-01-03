@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.itemCard {
+  padding: 10px;
+}
+
+.itemCard:hover {
+  text-decoration: None;
+}
+
+.listBtn {
+  margin-bottom: 25px;
+}

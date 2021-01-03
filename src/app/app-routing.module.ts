@@ -4,11 +4,20 @@ import {AuthGuard} from './authGuard/auth.guard';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {KanjiListsComponent} from './kanji-lists/kanji-lists.component';
+import {KanjiCardsComponent} from './kanji-cards/kanji-cards.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {KanjiListComponent} from './kanji-list/kanji-list.component';
+import {NotAuthGuard} from './notAuthGuard/notAuth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent, canActivate: [NotAuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'kanjilists', component: KanjiListsComponent, canActivate: [AuthGuard]},
+  { path: 'kanjilist/:id', component: KanjiListComponent, canActivate: [AuthGuard]},
+  { path: 'kanjicards', component: KanjiCardsComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

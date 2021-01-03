@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <h1>Kanji List: <span *ngIf="!loading">{{data.listName}}</span></h1>
+  <a class="btn btn-primary listBtn">Add Card</a>
+  <div *ngIf="!loading">
+    <div *ngIf="cards.length === 0">
+      No Cards in List
+    </div>
+    <div *ngFor="let item of cards">
+      <div *ngIf="isString(item)">
+        <div class="itemCard card bg-primary text-white mb-4">Loading</div>
+      </div>
+      <div *ngIf="!isString(item)">
+        <a class="itemCard card bg-primary text-white mb-4" [routerLink]="['/kanjicard', item._id]" >
+            <div>Kanji: {{item.kanji}}</div>
+            <div>Repetitions: {{item.repetitions}}</div>
+            <div>Learned Status: {{item.learnedStatus}}</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

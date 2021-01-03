@@ -12,6 +12,12 @@ import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptor } from './errorGuard/error.guard';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
+import { KanjiListsComponent } from './kanji-lists/kanji-lists.component';
+import { KanjiCardsComponent } from './kanji-cards/kanji-cards.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { KanjiListComponent } from './kanji-list/kanji-list.component';
+import {CookieService} from 'ngx-cookie-service';
+import {AuthGuard} from './authGuard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,11 @@ import { AlertComponent } from './alert/alert.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    KanjiListsComponent,
+    KanjiCardsComponent,
+    DashboardComponent,
+    KanjiListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +42,7 @@ import { AlertComponent } from './alert/alert.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

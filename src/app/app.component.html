@@ -1,5 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">Kanji 先生</a>
+  <a class="navbar-brand" *ngIf="currentUser" href="/dashboard">Kanji 先生</a>
+  <a class="navbar-brand" *ngIf="!currentUser" href="/">Kanji 先生</a>
   <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
   <!-- Navbar Search-->
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -17,7 +18,8 @@
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
         <a *ngIf="currentUser" class="dropdown-item" routerLink="#">Settings</a>
         <a *ngIf="!currentUser" class="dropdown-item" routerLink="/login">Login</a>
-        <a *ngIf="currentUser" class="dropdown-item" href="#" (click)="logout()">Logout</a>
+        <a *ngIf="!currentUser" class="dropdown-item" routerLink="/register">Register</a>
+        <a *ngIf="currentUser" class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
       </div>
     </li>
   </ul>
@@ -28,40 +30,56 @@
       <div class="sb-sidenav-menu">
         <div class="nav">
           <div class="sb-sidenav-menu-heading">Main</div>
-          <a class="nav-link" routerLink="index.html">
+          <a class="nav-link" routerLink="/">
             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
             Home
           </a>
-          <a class="nav-link" routerLink="/dashboard">
-            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-            Dashboard
-          </a>
-          <div class="sb-sidenav-menu-heading">Kanji Lists</div>
-          <a class="nav-link" routerLink="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-            Lists
-          </a>
-          <a class="nav-link" routerLink="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-caret-square-up"></i></div>
-            Cards
-          </a>
-          <div class="sb-sidenav-menu-heading">Dictionary</div>
-          <a class="nav-link" routerLink="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
-            Search
-          </a>
-          <a class="nav-link" routerLink="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-paint-brush"></i></div>
-            Kanji
-          </a>
-          <a class="nav-link" routerLink="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-th-large"></i></div>
-            Radicals
-          </a>
-          <a class="nav-link" routerLink="tables.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-font"></i></div>
-            Vocabulary
-          </a>
+          <div *ngIf="currentUser">
+            <a class="nav-link" routerLink="/dashboard">
+              <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+              Dashboard
+            </a>
+          </div>
+          <div *ngIf="!currentUser">
+            <a class="nav-link" routerLink="/login">
+              <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
+              Login
+            </a>
+            <a class="nav-link" routerLink="/register">
+              <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
+              Register
+            </a>
+          </div>
+          <div *ngIf="currentUser">
+            <div class="sb-sidenav-menu-heading">Kanji Lists</div>
+            <a class="nav-link" routerLink="/kanjilists">
+              <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+              Lists
+            </a>
+            <a class="nav-link" routerLink="/kanjicards">
+              <div class="sb-nav-link-icon"><i class="fas fa-caret-square-up"></i></div>
+              Cards
+            </a>
+          </div>
+          <div *ngIf="currentUser">
+            <div class="sb-sidenav-menu-heading">Dictionary</div>
+            <a class="nav-link" routerLink="charts.html">
+              <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+              Search
+            </a>
+            <a class="nav-link" routerLink="charts.html">
+              <div class="sb-nav-link-icon"><i class="fas fa-paint-brush"></i></div>
+              Kanji
+            </a>
+            <a class="nav-link" routerLink="charts.html">
+              <div class="sb-nav-link-icon"><i class="fas fa-th-large"></i></div>
+              Radicals
+            </a>
+            <a class="nav-link" routerLink="tables.html">
+              <div class="sb-nav-link-icon"><i class="fas fa-font"></i></div>
+              Vocabulary
+            </a>
+          </div>
         </div>
       </div>
       <div *ngIf="currentUser" class="sb-sidenav-footer">

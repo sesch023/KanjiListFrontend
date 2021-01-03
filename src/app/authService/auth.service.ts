@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 import config from '../../config';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<string>;
   public currentUser: Observable<string>;
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<string>(JSON.parse(localStorage.getItem('currentUserMail')));
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.currentUserSubject = new BehaviorSubject<string>(this.cookieService.get('currentUserMail'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -22,27 +23,30 @@ export class AuthenticationService {
     if (!this.currentUserValue) {
       return this.http.post<any>(`${config.apiUrl}/api/login`, {email, password}, {withCredentials: true})
         .pipe(map(() => {
-          console.log(email);
-          localStorage.setItem('currentUserMail', JSON.stringify(email));
+          this.cookieService.set('currentUserMail', email, { expires: 2, sameSite: 'Strict' });
           this.currentUserSubject.next(email);
           return email;
         }));
     } else {
-      throwError('The User is already logged in!');
+      return throwError('The User is already logged in!');
     }
+  }
+
+  logoutLocal(): void {
+    this.cookieService.delete('currentUserMail');
+    this.cookieService.deleteAll();
+    this.currentUserSubject.next(null);
   }
 
   logout(): Observable<void> {
     if (this.currentUserValue) {
       return this.http.post<any>(`${config.apiUrl}/api/logout`, {}, {withCredentials: true})
         .pipe(map(() => {
-          console.log(this.currentUserValue);
-          localStorage.removeItem('currentUserMail');
-          this.currentUserSubject.next(null);
+          this.logoutLocal();
           return;
         }));
     } else {
-      throwError('The User is not logged in!');
+      return throwError('The User is not logged in!');
     }
   }
 }

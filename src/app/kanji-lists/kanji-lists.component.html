@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <h1>Kanji Lists</h1>
+  <a class="btn btn-primary listBtn">Create List</a>
+  <div *ngIf="!loading">
+    <div *ngIf="data.length === 0">
+      No Lists
+    </div>
+    <a class="itemCard card bg-primary text-white mb-4" [routerLink]="['/kanjilist', item._id]" *ngFor="let item of data">
+      <div>Name: {{item.listName}}</div>
+      <div>Cards: {{item.kanjiCards.length}}</div>
+      <div>Date: {{item.createDate}}</div>
+    </a>
+  </div>
+</div>
