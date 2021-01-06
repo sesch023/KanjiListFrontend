@@ -9,6 +9,7 @@ import {KanjiCardsComponent} from './kanji-cards/kanji-cards.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {KanjiListComponent} from './kanji-list/kanji-list.component';
 import {NotAuthGuard} from './notAuthGuard/notAuth.guard';
+import {KanjiCardComponent} from './kanji-card/kanji-card.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'kanjilists', component: KanjiListsComponent, canActivate: [AuthGuard]},
-  { path: 'kanjilist/:id', component: KanjiListComponent, canActivate: [AuthGuard]},
+  { path: 'kanjilists/:id', component: KanjiListComponent, canActivate: [AuthGuard]},
+  { path: 'kanjicards/:id', component: KanjiCardComponent, canActivate: [AuthGuard]},
   { path: 'kanjicards', component: KanjiCardsComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home

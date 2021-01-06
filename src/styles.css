@@ -7,6 +7,110 @@
   text-decoration: None;
 }
 
-.listBtn {
-  margin-bottom: 25px;
+h1 {
+  margin-bottom: 25px !important;
+  margin-top: 25px !important;
+}
+
+.topSpacing {
+  margin-top: 25px;
+}
+
+.kanjiLink {
+  color: #fff;
+  padding: 20px 30px;
+  cursor: pointer;
+  display: inline-flex;
+  width: auto;
+  height: 135px;
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  border-radius: 0.25rem;
+}
+
+.contentTable {
+  display: table;
+}
+
+.contentTable > div {
+  display: table-cell;
+}
+
+.contentTable > div:not(:first-child) {
+  padding-left: 20px;
+}
+
+.kanjiLinkKanji {
+  border-right: 3px solid #fff;
+  line-height: 103px;
+  font-size: 76px;
+  padding-right: 20px;
+}
+
+.kanjiLink:hover {
+  color: #fff;
+}
+
+.kanjiLinkData {
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.cardData {
+  color: #fff;
+  padding: 20px 30px;
+  margin-top: 20px;
+  width: auto;
+  font-size: 20px;
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  display: block;
+  border-radius: 0.25rem;
+}
+
+.learnStatusBox {
+  width: 100px;
+  display: inline-block;
+}
+
+.cardArea {
+  overflow: auto;
+  resize: none;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  color: #333;
+  border-radius: 0.25rem;
+}
+
+.cardArea:not(:focus) {
+  background-color: #dedede;
+  cursor: pointer;
+}
+
+.btnFullWidth {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.levelButton {
+  background-color: #007bff;
+  border: None;
+  color: #fff;
+  margin: 0 3px;
+  font-size: 15px;
+  line-height: 25px;
+  border-radius: 0.25rem;
+}
+
+.levelButton:disabled {
+  color: #fff;
+  background-color: #3090ff;
+  border-color: #007bff;
 }

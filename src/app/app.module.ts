@@ -18,6 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { KanjiListComponent } from './kanji-list/kanji-list.component';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthGuard} from './authGuard/auth.guard';
+import { KanjiCardComponent } from './kanji-card/kanji-card.component';
+import { KanjiBaseInfoComponent } from './kanji-base-info/kanji-base-info.component';
+import { KanjiCardListInfoComponent } from './kanji-card-list-info/kanji-card-list-info.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import {AuthGuard} from './authGuard/auth.guard';
     KanjiListsComponent,
     KanjiCardsComponent,
     DashboardComponent,
-    KanjiListComponent
+    KanjiListComponent,
+    KanjiCardComponent,
+    KanjiBaseInfoComponent,
+    KanjiCardListInfoComponent
   ],
   imports: [
     BrowserModule,

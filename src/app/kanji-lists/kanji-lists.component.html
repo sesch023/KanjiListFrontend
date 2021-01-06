@@ -5,10 +5,19 @@
     <div *ngIf="data.length === 0">
       No Lists
     </div>
-    <a class="itemCard card bg-primary text-white mb-4" [routerLink]="['/kanjilist', item._id]" *ngFor="let item of data">
-      <div>Name: {{item.listName}}</div>
-      <div>Cards: {{item.kanjiCards.length}}</div>
-      <div>Date: {{item.createDate}}</div>
+    <a class="itemCard card bg-info text-white mb-4 cardData" [routerLink]="['/kanjilists', item._id]" *ngFor="let item of data">
+      <div class="contentTable">
+        <div>
+          <div>Name:</div>
+          <div>Cards:</div>
+          <div>Date:</div>
+        </div>
+        <div>
+          <div>{{item.listName}}</div>
+          <div>{{item.kanjiCards.length}}</div>
+          <div>{{utils.convertDate(item.createDate)}}</div>
+        </div>
+      </div>
     </a>
   </div>
 </div>

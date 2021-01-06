@@ -1,0 +1,15 @@
+<a *ngIf="!loading" class="kanjiLink itemCard bg-success">
+  <div class="kanjiLinkKanji">{{kanji._id}}</div>
+  <div class="kanjiLinkData contentTable">
+    <div>
+      <div>Meanings:</div>
+      <div>On-Readings:</div>
+      <div>Kun-Readings:</div>
+    </div>
+    <div>
+      <div>{{meanings}}</div>
+      <div>{{onReadings}}</div>
+      <div>{{kunReadings}}</div>
+    </div>
+  </div>
+</a>

@@ -5,6 +5,7 @@ import config from '../../config';
 import {Observable, of, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {AlertService} from '../alertService/alert.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +13,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private http: HttpClient
+    private http: HttpClient,
+    private alertService: AlertService
   ) {}
 
   checkLoggedIn(): Observable<boolean> {
@@ -31,6 +33,7 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         this.authenticationService.logoutLocal();
+        this.alertService.error('Authorization unsuccessful. Please try again.', true);
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
         return false;
       }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import config from '../../config';
+import {Utils} from '../../utils/utils';
+import {KanjiCard} from '../../supportInterfaces/kanji.card';
 
 @Component({
   selector: 'app-kanji-cards',
@@ -9,8 +11,9 @@ import config from '../../config';
   styleUrls: ['./kanji-cards.component.css']
 })
 export class KanjiCardsComponent implements OnInit {
+  utils = Utils;
   loading = true;
-  data: Array<object>;
+  data: Array<KanjiCard>;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +22,7 @@ export class KanjiCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getKanjiCards().subscribe((data: Array<object>) => {
+    this.getKanjiCards().subscribe((data: Array<KanjiCard>) => {
       this.data = data;
       this.loading = false;
     });

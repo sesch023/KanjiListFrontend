@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <a *ngIf="sourceURL" [routerLink]="[sourceURL]" class="btn btn-primary listBtn topSpacing">Back</a>
+  <h1>Kanji Card</h1>
+  <app-kanji-base-info *ngIf="!loading" [kanjiID]="this.data.kanji"></app-kanji-base-info>
+  <div *ngIf="!loading" class="cardData itemCard bg-info">
+    <div class="contentTable">
+      <div>
+        <div>Learned Status:</div>
+        <div>Repetitions:</div>
+        <div>Last Repetition:</div>
+        <div>Create Date:</div>
+      </div>
+      <div>
+        <div>
+          <span class="learnStatusBox">{{levelOrder[currentLevel].key}}</span>
+          <button [disabled]="currentLevel <= 0" (click)="lowerLevel()" class="levelButton"><i class="fas fa-arrow-left"></i></button>
+          <button [disabled]="currentLevel >= levelOrder.length - 1" (click)="higherLevel()" class="levelButton"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div>
+          {{data.repetitions}}
+        </div>
+        <div>
+          <span *ngIf="data.lastRepetition">{{utils.convertDate(data.lastRepetition)}}</span><span *ngIf="!data.lastRepetition">-</span>
+        </div>
+        <div>
+          {{utils.convertDate(data.createDate)}}
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="cardNote">Note:</label>
+    </div>
+    <textarea (focus)="focusNote()" id="cardNote" class="cardArea" [(ngModel)]="data.note"></textarea>
+    <button [disabled]="areaDisabled" (click)="saveNote()" class="btn btn-primary btnFullWidth">Save Note</button>
+  </div>
+</div>

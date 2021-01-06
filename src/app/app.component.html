@@ -30,52 +30,52 @@
       <div class="sb-sidenav-menu">
         <div class="nav">
           <div class="sb-sidenav-menu-heading">Main</div>
-          <a class="nav-link" routerLink="/">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
             Home
           </a>
           <div *ngIf="currentUser">
-            <a class="nav-link" routerLink="/dashboard">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
               Dashboard
             </a>
           </div>
           <div *ngIf="!currentUser">
-            <a class="nav-link" routerLink="/login">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
               Login
             </a>
-            <a class="nav-link" routerLink="/register">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
               Register
             </a>
           </div>
           <div *ngIf="currentUser">
             <div class="sb-sidenav-menu-heading">Kanji Lists</div>
-            <a class="nav-link" routerLink="/kanjilists">
+            <a class="nav-link" routerLink="/kanjilists" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
               Lists
             </a>
-            <a class="nav-link" routerLink="/kanjicards">
+            <a class="nav-link" routerLink="/kanjicards" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-caret-square-up"></i></div>
               Cards
             </a>
           </div>
           <div *ngIf="currentUser">
             <div class="sb-sidenav-menu-heading">Dictionary</div>
-            <a class="nav-link" routerLink="charts.html">
+            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
               Search
             </a>
-            <a class="nav-link" routerLink="charts.html">
+            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-paint-brush"></i></div>
               Kanji
             </a>
-            <a class="nav-link" routerLink="charts.html">
+            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-th-large"></i></div>
               Radicals
             </a>
-            <a class="nav-link" routerLink="tables.html">
+            <a class="nav-link" routerLink="tables.html" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-font"></i></div>
               Vocabulary
             </a>

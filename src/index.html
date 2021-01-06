@@ -15,14 +15,6 @@
           document.body.classList.toggle("sb-sidenav-toggled");
         }
       }
-
-      let path = window.location.href;
-      let elements = document.querySelectorAll("#layoutSidenav_nav .sb-sidenav a.nav-link");
-      for(let i = 0; i < elements.length; i++){
-        if ((elements[i].routerLink === path) || (window.location.pathname === "/" && elements[i].pathname === "/index.html")) {
-          elements[i].classList.add("active");
-        }
-      }
     }
   </script>
 </head>
