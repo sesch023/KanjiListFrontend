@@ -10,9 +10,12 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {KanjiListComponent} from './kanji-list/kanji-list.component';
 import {NotAuthGuard} from './notAuthGuard/notAuth.guard';
 import {KanjiCardComponent} from './kanji-card/kanji-card.component';
+import {KanjiCardAddComponent} from './kanji-card-add/kanji-card-add.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: '404', component: NotFoundComponent },
   { path: 'login', component: LoginComponent, canActivate: [NotAuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -20,6 +23,7 @@ const routes: Routes = [
   { path: 'kanjilists/:id', component: KanjiListComponent, canActivate: [AuthGuard]},
   { path: 'kanjicards/:id', component: KanjiCardComponent, canActivate: [AuthGuard]},
   { path: 'kanjicards', component: KanjiCardsComponent, canActivate: [AuthGuard] },
+  { path: 'addkanjicard/:id', component: KanjiCardAddComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import config from '../../config';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Utils} from '../../utils/utils';
 import {KanjiCard} from '../../supportInterfaces/kanji.card';
-import {Kanji} from '../../supportInterfaces/kanji';
 import {KeyValue} from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {AlertService} from '../alertService/alert.service';
+import {Backend} from '../../backend/backend';
 
 @Component({
   selector: 'app-kanji-card',
@@ -16,26 +18,40 @@ import {KeyValue} from '@angular/common';
 export class KanjiCardComponent implements OnInit {
   utils = Utils;
   loading = true;
+  backend = Backend;
   areaDisabled = true;
   data: KanjiCard;
   levelOrder: Array<KeyValue<string, number>> = [];
   currentLevel: number;
   sourceURL: string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private router: Router,
+    private alertService: AlertService) {
     for (const key of Object.keys(config.vocabularyReverseLevels)) {
       this.levelOrder.push({key, value: config.vocabularyReverseLevels[key]});
     }
     this.levelOrder = this.levelOrder.sort((a, b) => a.value - b.value);
   }
 
-  getKanjiCard(cardID: string): Observable<KanjiCard> {
-    return this.http.get<any>(`${config.apiUrl}/api/getKanjiCard/${cardID}`, {withCredentials: true});
+  removeKanjiCard(): void {
+    const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.backend.removeKanjiCard(this.data._id, this.http).subscribe(() => {
+          this.router.navigate([this.sourceURL]);
+          this.alertService.success('Card was removed!', false);
+        });
+      }
+    });
   }
 
   updateKanjiCard(): void {
-    this.http.put<any>(`${config.apiUrl}/api/updateKanjiCard/${this.data._id}?learnedStatus=${this.data.learnedStatus}`,
-      {note: this.data.note}, {withCredentials: true}).subscribe(() => {
+    this.backend.updateKanjiCard(this.data._id, this.data.learnedStatus, this.data.note, this.http).subscribe(() => {
         this.getData(this.data._id);
     });
   }
@@ -65,8 +81,8 @@ export class KanjiCardComponent implements OnInit {
     this.updateKanjiCard();
   }
 
-  getData(listID: string): void {
-    this.getKanjiCard(listID).subscribe((data: KanjiCard) => {
+  getData(cardID: string): void {
+    this.backend.getKanjiCard(cardID, this.http).subscribe((data: KanjiCard) => {
       this.data = data;
       const status = this.utils.convertLearnedStatus(this.data.learnedStatus);
       for (let i = 0; i < this.levelOrder.length; i++) {
@@ -80,8 +96,8 @@ export class KanjiCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const listID = this.route.snapshot.paramMap.get('id');
+    const cardID = this.route.snapshot.paramMap.get('id');
     this.sourceURL = this.route.snapshot.queryParamMap.get('sourceURL');
-    this.getData(listID);
+    this.getData(cardID);
   }
 }

@@ -2,18 +2,25 @@
   <div class="itemCard card bg-primary text-white mb-4">Loading</div>
 </div>
 <div *ngIf="!loading">
-  <a class="itemCard card bg-info text-white mb-4 cardData" [routerLink]="['/kanjicards', kanjiCard._id]" [queryParams]="{sourceURL: router.url}">
-    <div class="contentTable">
-      <div>
-        <div>Kanji:</div>
-        <div>Repetitions:</div>
-        <div>Learned Status:</div>
+  <div class="card-group mb-4">
+    <a class="itemCard card bg-info text-white cardData" [routerLink]="['/kanjicards', kanjiCard._id]" [queryParams]="{sourceURL: router.url}">
+      <div class="contentTable">
+        <div>
+          <div>Kanji:</div>
+          <div>Repetitions:</div>
+          <div>Learned Status:</div>
+        </div>
+        <div>
+          <div>{{kanjiCard.kanji}}</div>
+          <div>{{kanjiCard.repetitions}}</div>
+          <div>{{utils.convertLearnedStatus(kanjiCard.learnedStatus)}}</div>
+        </div>
       </div>
+    </a>
+    <a class="listDeleteBtn itemCard cardData text-white btn-danger" (click)="removeKanjiCard(kanjiCard._id)">
       <div>
-        <div>{{kanjiCard.kanji}}</div>
-        <div>{{kanjiCard.repetitions}}</div>
-        <div>{{utils.convertLearnedStatus(kanjiCard.learnedStatus)}}</div>
+        <i class="fas fa-trash-alt"></i>
       </div>
-    </div>
-  </a>
+    </a>
+  </div>
 </div>

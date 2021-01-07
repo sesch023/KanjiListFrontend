@@ -1,7 +1,12 @@
 <div class="container-fluid">
-  <a *ngIf="sourceURL" [routerLink]="[sourceURL]" class="btn btn-primary listBtn topSpacing">Back</a>
   <h1>Kanji Card</h1>
-  <app-kanji-base-info *ngIf="!loading" [kanjiID]="this.data.kanji"></app-kanji-base-info>
+  <div class="mb-4">
+    <div class="btn-group">
+      <a *ngIf="sourceURL" [routerLink]="[sourceURL]" class="btn btn-primary listBtn">Back</a>
+      <a class="btn btn-danger listBtn"  (click)="removeKanjiCard()">Remove Card</a>
+    </div>
+  </div>
+  <app-kanji-base-info *ngIf="!loading && this.data.kanji" [kanjiID]="this.data.kanji"></app-kanji-base-info>
   <div *ngIf="!loading" class="cardData itemCard bg-info">
     <div class="contentTable">
       <div>

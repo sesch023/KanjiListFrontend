@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <a *ngIf="sourceURL" [routerLink]="[sourceURL]" class="btn btn-primary listBtn topSpacing">Back</a>
+  <h1>Add Kanji Card</h1>
+  <div  class="addKanji itemCard bg-success">
+    <form [formGroup]="addKanjiForm"(ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="kanji"></label>
+        <input placeholder="Add Kanji" id="kanji" type="text" formControlName="kanji" class="form-control" [ngClass]="{ 'is-invalid': submitted && addKanjiForm.controls.kanji.errors }" />
+        <button class="btn btn-primary">
+          <span *ngIf="!loading" >
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        </button>
+      </div>
+    </form>
+    <div *ngIf="submitted && addKanjiForm.controls.kanji.errors" class="invalid-feedback">
+      <div *ngIf="addKanjiForm.controls.kanji.errors.required">Kanji is required</div>
+      <div *ngIf="addKanjiForm.controls.kanji.errors.minlength">Text is too short</div>
+      <div *ngIf="addKanjiForm.controls.kanji.errors.maxlength">Text is too long</div>
+      <div *ngIf="kanjiAddError">{{kanjiAddError}}</div>
+    </div>
+  </div>
+</div>

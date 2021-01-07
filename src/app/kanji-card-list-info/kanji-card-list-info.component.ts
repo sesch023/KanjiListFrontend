@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Utils} from '../../utils/utils';
-import {Observable} from 'rxjs';
 import {KanjiCard} from '../../supportInterfaces/kanji.card';
-import config from '../../config';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Backend} from '../../backend/backend';
+import {MatDialog} from '@angular/material/dialog';
+import {AlertService} from '../alertService/alert.service';
 
 @Component({
   selector: 'app-kanji-card-list-info',
@@ -12,23 +13,34 @@ import {Router} from '@angular/router';
   styleUrls: ['./kanji-card-list-info.component.css']
 })
 export class KanjiCardListInfoComponent implements OnInit {
+  backend = Backend;
   @Input() id: string;
   @Input() kanjiCard: KanjiCard;
+  @Output() cardRemoved = new EventEmitter();
   loading = true;
   utils = Utils;
   router: Router;
 
-  constructor(private http: HttpClient, router: Router) {
+  constructor(private http: HttpClient, router: Router, private dialog: MatDialog, private alertService: AlertService) {
     this.router = router;
   }
 
-  getKanjiCard(cardID: string): Observable<KanjiCard>{
-    return this.http.get<any>(`${config.apiUrl}/api/getKanjiCard/${cardID}`, {withCredentials: true});
+  removeKanjiCard(): void {
+    const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.backend.removeKanjiCard(this.kanjiCard._id, this.http).subscribe(() => {
+          this.cardRemoved.emit();
+          this.alertService.success('Card was removed!', false);
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
     if (!this.kanjiCard) {
-      this.getKanjiCard(this.id).subscribe((item) => {
+      this.backend.getKanjiCard(this.id, this.http).subscribe((item) => {
         this.kanjiCard = item;
         this.loading = false;
       });

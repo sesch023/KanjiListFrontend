@@ -1,23 +1,30 @@
 <div class="container-fluid">
   <h1>Kanji Lists</h1>
-  <a class="btn btn-primary listBtn">Create List</a>
+  <a class="btn btn-primary mb-4" (click)="addKanjiList()">Create List</a>
   <div *ngIf="!loading">
     <div *ngIf="data.length === 0">
-      No Lists
+      <img class="noResultImg" alt="No Results" src="../../assets/no_results.gif"/>
     </div>
-    <a class="itemCard card bg-info text-white mb-4 cardData" [routerLink]="['/kanjilists', item._id]" *ngFor="let item of data">
-      <div class="contentTable">
-        <div>
-          <div>Name:</div>
-          <div>Cards:</div>
-          <div>Date:</div>
+    <div class="card-group mb-4 " *ngFor="let item of data">
+      <a class="itemCard card bg-info text-white cardData" [routerLink]="['/kanjilists', item._id]">
+        <div class="contentTable">
+          <div>
+            <div>Name:</div>
+            <div>Cards:</div>
+            <div>Create Date:</div>
+          </div>
+          <div>
+            <div>{{item.listName}}</div>
+            <div>{{item.kanjiCards.length}}</div>
+            <div>{{utils.convertDate(item.createDate)}}</div>
+          </div>
         </div>
+      </a>
+      <a class="listDeleteBtn itemCard cardData text-white btn-danger" (click)="removeKanjiList(item._id)">
         <div>
-          <div>{{item.listName}}</div>
-          <div>{{item.kanjiCards.length}}</div>
-          <div>{{utils.convertDate(item.createDate)}}</div>
+          <i class="fas fa-trash-alt"></i>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import config from '../config';
 import {formatDate} from '@angular/common';
+import {ConfirmationDialogComponent} from '../app/confirmation-dialog/confirmation-dialog.component';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 export class Utils {
   static convertLearnedStatus(learnedStatus: number): string {
@@ -18,5 +20,12 @@ export class Utils {
 
   static isString(el: object): boolean {
     return typeof el === 'string' || el instanceof String;
+  }
+
+  static createRemoveDialog(dialog: MatDialog, text: string): MatDialogRef<ConfirmationDialogComponent> {
+    return dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: text
+    });
   }
 }

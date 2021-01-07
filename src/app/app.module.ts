@@ -17,10 +17,15 @@ import { KanjiCardsComponent } from './kanji-cards/kanji-cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KanjiListComponent } from './kanji-list/kanji-list.component';
 import {CookieService} from 'ngx-cookie-service';
-import {AuthGuard} from './authGuard/auth.guard';
 import { KanjiCardComponent } from './kanji-card/kanji-card.component';
 import { KanjiBaseInfoComponent } from './kanji-base-info/kanji-base-info.component';
 import { KanjiCardListInfoComponent } from './kanji-card-list-info/kanji-card-list-info.component';
+import { KanjiCardAddComponent } from './kanji-card-add/kanji-card-add.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,16 +40,25 @@ import { KanjiCardListInfoComponent } from './kanji-card-list-info/kanji-card-li
     KanjiListComponent,
     KanjiCardComponent,
     KanjiBaseInfoComponent,
-    KanjiCardListInfoComponent
+    KanjiCardListInfoComponent,
+    KanjiCardAddComponent,
+    NotFoundComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -23,12 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
-  ) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/dashboard']);
-    }
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -49,8 +44,6 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.valid) {
       this.loading = true;
-      console.log(this.authenticationService);
-      console.log(this.loginForm.controls.email.value, this.loginForm.controls.password.value);
       this.authenticationService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
         .pipe(first())
         .subscribe(

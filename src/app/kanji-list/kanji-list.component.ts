@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import config from '../../config';
 import {ActivatedRoute, Router} from '@angular/router';
 import {KanjiList} from '../../supportInterfaces/kanji.list';
+import {Backend} from '../../backend/backend';
+import {AlertService} from '../alertService/alert.service';
+import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {Utils} from '../../utils/utils';
 
 @Component({
   selector: 'app-kanji-list',
@@ -13,19 +16,45 @@ import {KanjiList} from '../../supportInterfaces/kanji.list';
 export class KanjiListComponent implements OnInit {
   loading = true;
   data: KanjiList;
+  router: Router;
+  backend = Backend;
+  utils = Utils;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    router: Router,
+    private alertService: AlertService,
+    private dialog: MatDialog) {
+    this.router = router;
   }
 
-  getKanjiList(listID: string): Observable<KanjiList>{
-    return this.http.get<any>(`${config.apiUrl}/api/getKanjiList/${listID}`, {withCredentials: true});
+  removeKanjiList(): void {
+    const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.backend.removeKanjiList(this.data._id, this.http).subscribe(() => {
+          this.router.navigate(['/kanjilists']);
+          this.alertService.success('List was removed!', false);
+        });
+      }
+    });
   }
 
-  ngOnInit(): void {
+  getData(): void {
     const listID = this.route.snapshot.paramMap.get('id');
-    this.getKanjiList(listID).subscribe((data: KanjiList) => {
+    this.backend.getKanjiList(listID, this.http).subscribe((data: KanjiList) => {
       this.data = data;
       this.loading = false;
     });
+  }
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  onCardRemoved(): void {
+    this.getData();
   }
 }

@@ -1,10 +1,15 @@
 <div class="container-fluid">
-  <h1>Kanji List: <span *ngIf="!loading">{{data.listName}}</span></h1>
-  <a class="btn btn-primary listBtn">Add Card</a>
-  <div *ngIf="!loading">
-    <div *ngIf="data.kanjiCards.length === 0">
-      No Cards in List
+  <div *ngIf="!loading" >
+    <h1>Kanji List: <span>{{data.listName}}</span></h1>
+    <div class="btn-group  mb-4">
+      <a class="btn btn-primary listBtn"  [routerLink]="['/addkanjicard', data._id]" [queryParams]="{sourceURL: router.url}">Add Card</a>
+      <a class="btn btn-danger listBtn"  (click)="removeKanjiList()">Remove List</a>
     </div>
-    <app-kanji-card-list-info *ngFor="let item of data.kanjiCards" [id]="item"></app-kanji-card-list-info>
+    <div>
+      <div *ngIf="data.kanjiCards.length === 0">
+        <img class="noResultImg" alt="No Results" src="../../assets/no_results.gif"/>
+      </div>
+      <app-kanji-card-list-info *ngFor="let item of data.kanjiCards" [id]="item" (cardRemoved)="onCardRemoved()"></app-kanji-card-list-info>
+    </div>
   </div>
 </div>

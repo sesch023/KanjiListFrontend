@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Kanji} from '../../supportInterfaces/kanji';
-import {Observable} from 'rxjs';
-import config from '../../config';
 import {HttpClient} from '@angular/common/http';
+import {Backend} from '../../backend/backend';
 
 @Component({
   selector: 'app-kanji-base-info',
@@ -16,15 +15,12 @@ export class KanjiBaseInfoComponent implements OnInit {
   meanings: string;
   onReadings: string;
   kunReadings: string;
+  backend = Backend;
 
   constructor(private http: HttpClient) { }
 
-  getKanji(kanji: string): Observable<Kanji> {
-    return this.http.get<any>(`${config.apiUrl}/api/kanjiinfo/${kanji}`, {withCredentials: true});
-  }
-
   ngOnInit(): void {
-    this.getKanji(this.kanjiID).subscribe((kanji: Kanji) => {
+    this.backend.getKanji(this.kanjiID, this.http).subscribe((kanji: Kanji) => {
       this.kanji = kanji;
       this.meanings = this.kanji.meanings.join(', ');
       this.onReadings = this.kanji.onReadings.join(', ');
