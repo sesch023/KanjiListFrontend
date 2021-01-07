@@ -16,9 +16,9 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <a *ngIf="currentUser" class="dropdown-item" routerLink="#">Settings</a>
+        <a *ngIf="currentUser" class="dropdown-item" routerLink="/settings">Settings</a>
         <a *ngIf="!currentUser" class="dropdown-item" routerLink="/login">Login</a>
-        <a *ngIf="!currentUser" class="dropdown-item" routerLink="/register">Register</a>
+        <a *ngIf="!currentUser" class="dropdown-item" routerLink="/signup">Sign Up</a>
         <a *ngIf="currentUser" class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
       </div>
     </li>
@@ -45,9 +45,9 @@
               <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
               Login
             </a>
-            <a class="nav-link" routerLink="/register" routerLinkActive="active">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
-              Register
+              Sign Up
             </a>
           </div>
           <div *ngIf="currentUser">

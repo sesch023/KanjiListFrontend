@@ -3,7 +3,10 @@
 </div>
 <div *ngIf="!loading">
   <div class="card-group mb-4">
-    <a class="itemCard card bg-info text-white cardData" [routerLink]="['/kanjicards', kanjiCard._id]" [queryParams]="{sourceURL: router.url}">
+    <a class="itemCard listData bg-info text-white cardData" [routerLink]="['/kanjicards', kanjiCard._id]" [queryParams]="{sourceURL: router.url}">
+      <div>
+        0
+      </div>
       <div class="contentTable">
         <div>
           <div>Kanji:</div>
@@ -17,7 +20,7 @@
         </div>
       </div>
     </a>
-    <a class="listDeleteBtn itemCard cardData text-white btn-danger" (click)="removeKanjiCard(kanjiCard._id)">
+    <a class="listDeleteBtn itemCard cardData text-white btn-danger" (click)="removeKanjiCard()">
       <div>
         <i class="fas fa-trash-alt"></i>
       </div>

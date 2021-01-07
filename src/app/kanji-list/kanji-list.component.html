@@ -2,7 +2,7 @@
   <div *ngIf="!loading" >
     <h1>Kanji List: <span>{{data.listName}}</span></h1>
     <div class="btn-group  mb-4">
-      <a class="btn btn-primary listBtn"  [routerLink]="['/addkanjicard', data._id]" [queryParams]="{sourceURL: router.url}">Add Card</a>
+      <a class="btn btn-success listBtn"  [routerLink]="['/addkanjicard', data._id]" [queryParams]="{sourceURL: router.url}">Add Card</a>
       <a class="btn btn-danger listBtn"  (click)="removeKanjiList()">Remove List</a>
     </div>
     <div>

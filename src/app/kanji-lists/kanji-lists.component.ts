@@ -17,9 +17,12 @@ export class KanjiListsComponent implements OnInit {
   utils = Utils;
   loading = true;
   data: Array<KanjiList>;
+  router: Router;
   backend = Backend;
 
-  constructor(private http: HttpClient, private router: Router, private alertService: AlertService, private dialog: MatDialog) { }
+  constructor(private http: HttpClient, router: Router, private alertService: AlertService, private dialog: MatDialog) {
+    this.router = router;
+  }
 
   removeKanjiList(id: string): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');

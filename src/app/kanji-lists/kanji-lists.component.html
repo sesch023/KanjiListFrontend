@@ -1,22 +1,27 @@
 <div class="container-fluid">
   <h1>Kanji Lists</h1>
-  <a class="btn btn-primary mb-4" (click)="addKanjiList()">Create List</a>
+  <a class="btn btn-success mb-4" (click)="addKanjiList()">Add List</a>
   <div *ngIf="!loading">
     <div *ngIf="data.length === 0">
       <img class="noResultImg" alt="No Results" src="../../assets/no_results.gif"/>
     </div>
     <div class="card-group mb-4 " *ngFor="let item of data">
-      <a class="itemCard card bg-info text-white cardData" [routerLink]="['/kanjilists', item._id]">
-        <div class="contentTable">
-          <div>
-            <div>Name:</div>
-            <div>Cards:</div>
-            <div>Create Date:</div>
-          </div>
-          <div>
-            <div>{{item.listName}}</div>
-            <div>{{item.kanjiCards.length}}</div>
-            <div>{{utils.convertDate(item.createDate)}}</div>
+      <a class="listData itemCard bg-info text-white cardData" [routerLink]="['/kanjilists', item._id]">
+        <div>
+          {{item.kanjiCards.length}}
+        </div>
+        <div>
+          <div class="contentTable">
+            <div>
+              <div>Name:</div>
+              <div>Total Cards:</div>
+              <div>Create Date:</div>
+            </div>
+            <div>
+              <div>{{item.listName}}</div>
+              <div>{{item.kanjiCards.length}}</div>
+              <div>{{utils.convertDate(item.createDate)}}</div>
+            </div>
           </div>
         </div>
       </a>

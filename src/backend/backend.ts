@@ -23,7 +23,7 @@ export class Backend {
   }
 
   static addKanjiCard(listID: string, kanji: string, http: HttpClient): Observable<string> {
-    return http.post<any>(`${config.apiUrl}/api/addKanjiCard/${listID}?kanji=${kanji}`, {withCredentials: true});
+    return http.post<any>(`${config.apiUrl}/api/addKanjiCard/${listID}?kanji=${kanji}`, {}, {withCredentials: true});
   }
 
   static getKanjiList(listID: string, http: HttpClient): Observable<KanjiList>{
@@ -31,7 +31,7 @@ export class Backend {
   }
 
   static addKanjiList(listName: string, http: HttpClient): Observable<string> {
-    return http.post<any>(`${config.apiUrl}/api/addKanjiList/${listName}`, {withCredentials: true});
+    return http.post<any>(`${config.apiUrl}/api/addKanjiList/${listName}`, {}, {withCredentials: true});
   }
 
   static removeKanjiList(listID: string, http: HttpClient): Observable<void> {
@@ -40,5 +40,18 @@ export class Backend {
 
   static getKanjiLists(http: HttpClient): Observable<Array<KanjiList>>{
     return http.get<any>(`${config.apiUrl}/api/getKanjiLists`, {withCredentials: true});
+  }
+
+  static signup(email: string, password: string, http: HttpClient): Observable<void> {
+    return http.post<any>(`${config.apiUrl}/api/signup`, {email, password}, {withCredentials: true});
+  }
+
+  static removeAccount(http: HttpClient): Observable<void> {
+    return http.delete<any>(`${config.apiUrl}/api/removeUser`, {withCredentials: true});
+  }
+
+  static validateMail(email: string, emailVerificationHash: string, http: HttpClient): Observable<void> {
+    return http.get<any>(`${config.apiUrl}/api/validateMail?email=${email}&emailVerificationHash=${emailVerificationHash}`,
+      {withCredentials: true});
   }
 }

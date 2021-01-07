@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { SignupComponent } from './signup/signup.component';
 import { ErrorInterceptor } from './errorGuard/error.guard';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
@@ -26,13 +26,15 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SettingsComponent } from './settings/settings.component';
+import { ValidatemailComponent } from './validatemail/validatemail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
+    SignupComponent,
     AlertComponent,
     KanjiListsComponent,
     KanjiCardsComponent,
@@ -43,7 +45,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     KanjiCardListInfoComponent,
     KanjiCardAddComponent,
     NotFoundComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SettingsComponent,
+    ValidatemailComponent
   ],
   imports: [
     BrowserModule,
