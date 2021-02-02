@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import config from '../../config';
 import {Utils} from '../../utils/utils';
-import {KanjiCard} from '../../supportInterfaces/kanji.card';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 
 @Component({
   selector: 'app-kanji-cards',

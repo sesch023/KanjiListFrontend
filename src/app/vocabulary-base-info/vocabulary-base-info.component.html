@@ -1,0 +1,15 @@
+<a *ngIf="!loading" class="linkedCard itemCard bg-success">
+  <div class="linkedCardID">{{vocabulary.type[0]}}</div>
+  <div class="linkedCardData contentTable">
+    <div>
+      <div>Vocabulary:</div>
+      <div>Translations:</div>
+      <div>Reading:</div>
+    </div>
+    <div>
+      <div *ngIf="vocabulary.vocab">{{vocabulary.vocab}}</div><div *ngIf="!vocabulary.vocab">-</div>
+      <div *ngIf="translations.length > 0">{{translations}}</div><div *ngIf="translations.length === 0">-</div>
+      <div *ngIf="vocabulary.kanaReading">{{vocabulary.kanaReading}}</div><div *ngIf="!vocabulary.kanaReading">-</div>
+    </div>
+  </div>
+</a>

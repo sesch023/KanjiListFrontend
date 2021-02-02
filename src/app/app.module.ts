@@ -28,6 +28,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SettingsComponent } from './settings/settings.component';
 import { ValidatemailComponent } from './validatemail/validatemail.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { SearchFormTopComponent } from './search-form-top/search-form-top.component';
+import { RadicalBaseInfoComponent } from './radical-base-info/radical-base-info.component';
+import { VocabularyBaseInfoComponent } from './vocabulary-base-info/vocabulary-base-info.component';
+import { ReapeatListComponent } from './reapeat-list/reapeat-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,13 @@ import { ValidatemailComponent } from './validatemail/validatemail.component';
     NotFoundComponent,
     ConfirmationDialogComponent,
     SettingsComponent,
-    ValidatemailComponent
+    ValidatemailComponent,
+    SearchComponent,
+    SearchResultComponent,
+    SearchFormTopComponent,
+    RadicalBaseInfoComponent,
+    VocabularyBaseInfoComponent,
+    ReapeatListComponent
   ],
   imports: [
     BrowserModule,

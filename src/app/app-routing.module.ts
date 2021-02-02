@@ -14,6 +14,8 @@ import {KanjiCardAddComponent} from './kanji-card-add/kanji-card-add.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {SettingsComponent} from './settings/settings.component';
 import {ValidatemailComponent} from './validatemail/validatemail.component';
+import {SearchComponent} from './search/search.component';
+import {ReapeatListComponent} from './reapeat-list/reapeat-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +30,9 @@ const routes: Routes = [
   { path: 'kanjicards/:id', component: KanjiCardComponent, canActivate: [AuthGuard]},
   { path: 'kanjicards', component: KanjiCardsComponent, canActivate: [AuthGuard] },
   { path: 'addkanjicard/:id', component: KanjiCardAddComponent, canActivate: [AuthGuard] },
+  { path: 'repeatlist/:id', component: ReapeatListComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'search/:term', component: SearchComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

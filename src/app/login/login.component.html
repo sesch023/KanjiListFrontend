@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="email">Mail</label>
       <input placeholder="Mail..." id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.email.errors }" />
-      <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
+      <div *ngIf="loginForm.controls.email.errors" class="invalid-feedback">
         <div *ngIf="loginForm.controls.email.errors.required">Mail is required</div>
         <div *ngIf="loginForm.controls.email.errors.email">Mail is invalid</div>
       </div>
@@ -12,7 +12,7 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input placeholder="Password..." id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }" />
-      <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
+      <div *ngIf="loginForm.controls.password.errors" class="invalid-feedback">
         <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
         <div *ngIf="loginForm.controls.password.errors.minlength">Password is too short</div>
       </div>
@@ -22,7 +22,7 @@
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         Login
       </button>
-      <a routerLink="/register" class="btn btn-link">Register</a>
+      <a routerLink="/signup" class="btn btn-link">Sign up</a>
     </div>
   </form>
 </div>

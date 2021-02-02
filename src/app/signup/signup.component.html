@@ -5,7 +5,7 @@
       <label for="email">Mail</label>
       <input placeholder="Mail..." id="email" type="text" formControlName="email" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && signupForm.controls.email.errors }" />
-      <div *ngIf="submitted && signupForm.controls.email.errors" class="invalid-feedback">
+      <div *ngIf="signupForm.controls.email.errors" class="invalid-feedback">
         <div *ngIf="signupForm.controls.email.errors.required">Mail is required</div>
         <div *ngIf="signupForm.controls.email.errors.email">Mail is invalid</div>
       </div>
@@ -14,7 +14,7 @@
       <label for="password">Password</label>
       <input placeholder="Password..." id="password" type="password" formControlName="password" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && signupForm.controls.password.errors }" />
-      <div *ngIf="submitted && signupForm.controls.password.errors" class="invalid-feedback">
+      <div *ngIf="signupForm.controls.password.errors" class="invalid-feedback">
         <div *ngIf="signupForm.controls.password.errors.required">Password is required</div>
         <div *ngIf="signupForm.controls.password.errors.minlength">Password is too short. A minimum of 8 letters is required.</div>
         <div *ngIf="signupForm.controls.password.errors.pattern">Password needs to contain one uppercase letter, one lowercase letter, a number and a special character (@$!%*#?&).</div>
@@ -24,7 +24,7 @@
       <label for="passwordRepeat">Password Repeat</label>
       <input placeholder="Password Repeat..." id="passwordRepeat" type="password" formControlName="passwordRepeat"
              class="form-control" [ngClass]="{ 'is-invalid': submitted && (signupForm.errors?.passwordsNotEqual || signupForm.controls.passwordRepeat.errors)}" />
-      <div *ngIf="submitted && signupForm.controls.passwordRepeat.errors" class="invalid-feedback">
+      <div *ngIf="signupForm.controls.passwordRepeat.errors" class="invalid-feedback">
         <div *ngIf="signupForm.controls.passwordRepeat.errors.required">Password is required</div>
         <div *ngIf="signupForm.controls.passwordRepeat.errors.minlength">Password is too short. A minimum of 8 letters is required.</div>
         <div *ngIf="signupForm.controls.passwordRepeat.errors.pattern">Password needs to contain one uppercase letter, one lowercase letter, a number and a special character (@$!%*#?&).</div>
@@ -38,6 +38,7 @@
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         Sign Up
       </button>
+      <a routerLink="/login" class="btn btn-link">Login</a>
     </div>
   </form>
 </div>

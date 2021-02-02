@@ -1,0 +1,37 @@
+<h2>Search Results</h2>
+<div>
+  <div *ngIf="result.kanji.length === 0 && result.radical.length === 0 && result.vocabulary.length === 0">
+    No results
+  </div>
+  <div *ngIf="result.kanji.length > 0" class="card">
+    <button data-toggle="collapse" data-target="#collpaseKanji" class="text-left card-header btn btn-light"
+            aria-expanded="true" aria-controls="collpaseKanji">
+      <i class="fas fa-paint-brush mr-2"></i>
+      Kanji - {{result.kanji.length}} Results
+    </button>
+    <div id="collpaseKanji" class="collapse card-body">
+      <app-kanji-base-info [kanji]="item" *ngFor="let item of result.kanji"></app-kanji-base-info>
+    </div>
+  </div>
+  <div *ngIf="result.radical.length > 0" class="card">
+    <button data-toggle="collapse" data-target="#collpaseRadical" class="text-left card-header btn btn-light"
+            aria-expanded="true" aria-controls="collpaseRadical">
+      <i class="fas fa-th-large mr-2"></i>
+      Radicals - {{result.radical.length}} Results
+    </button>
+    <div id="collpaseRadical" class="collapse card-body">
+      <app-radical-base-info [radical]="item" *ngFor="let item of result.radical"></app-radical-base-info>
+    </div>
+  </div>
+  <div *ngIf="result.vocabulary.length > 0" class="card">
+    <button data-toggle="collapse" data-target="#collpaseVocab" class="text-left card-header btn btn-light"
+            aria-expanded="true" aria-controls="collpaseVocab">
+      <i class="fas fa-font mr-2"></i>
+      Vocabulary - {{result.vocabulary.length}} Results
+    </button>
+    <div id="collpaseVocab" class="collapse card-body">
+      <app-vocabulary-base-info [vocabulary]="item" *ngFor="let item of result.vocabulary"></app-vocabulary-base-info>
+    </div>
+  </div>
+</div>
+

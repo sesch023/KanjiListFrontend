@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlertService} from '../alertService/alert.service';
-import {KanjiCard} from '../../supportInterfaces/kanji.card';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 import {Backend} from '../../backend/backend';
 import {HttpBackend, HttpClient} from '@angular/common/http';
-import {Kanji} from '../../supportInterfaces/kanji';
+import {Kanji} from '../../supportClasses/kanji';
 
 @Component({
   selector: 'app-kanji-card-add',

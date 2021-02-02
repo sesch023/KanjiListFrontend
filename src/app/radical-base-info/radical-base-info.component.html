@@ -1,0 +1,15 @@
+<a *ngIf="!loading" class="linkedCard itemCard bg-success">
+  <div class="linkedCardID">{{radical._id}}</div>
+  <div class="linkedCardData contentTable">
+    <div>
+      <div>Meanings:</div>
+      <div>Stroke Count:</div>
+      <div>Radical Number:</div>
+    </div>
+    <div>
+      <div *ngIf="meanings.length > 0">{{meanings}}</div><div *ngIf="meanings.length === 0">-</div>
+      <div *ngIf="radical.strokes">{{radical.strokes}}</div><div *ngIf="!radical.strokes">-</div>
+      <div *ngIf="radical.number">{{radical.number}}</div><div *ngIf="!radical.number">-</div>
+    </div>
+  </div>
+</a>

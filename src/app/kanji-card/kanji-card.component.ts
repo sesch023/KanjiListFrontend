@@ -4,7 +4,7 @@ import config from '../../config';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Utils} from '../../utils/utils';
-import {KanjiCard} from '../../supportInterfaces/kanji.card';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 import {KeyValue} from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import {AlertService} from '../alertService/alert.service';

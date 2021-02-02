@@ -1,0 +1,12 @@
+<form [formGroup]="searchFormTop" (ngSubmit)="onSubmit()" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+  <div class="input-group form-group">
+    <input [ngClass]="{ 'is-invalid': submitted && searchFormTop.controls.searchInput.errors }" class="form-control" formControlName="searchInput"
+           type="text" placeholder="Search for..." id="searchInput" aria-label="Search" aria-describedby="basic-addon2" />
+    <div class="input-group-append form-group">
+      <button class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        <span *ngIf="!loading"><i class="fas fa-search"></i></span>
+      </button>
+    </div>
+  </div>
+</form>

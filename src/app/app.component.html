@@ -1,16 +1,9 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
   <a class="navbar-brand" *ngIf="currentUser" href="/dashboard">Kanji 先生</a>
   <a class="navbar-brand" *ngIf="!currentUser" href="/">Kanji 先生</a>
-  <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+  <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
   <!-- Navbar Search-->
-  <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-    <div class="input-group">
-      <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-      </div>
-    </div>
-  </form>
+  <app-search-form-top class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></app-search-form-top>
   <!-- Navbar-->
   <ul class="navbar-nav ml-auto ml-md-0">
     <li class="nav-item dropdown">
@@ -63,19 +56,19 @@
           </div>
           <div *ngIf="currentUser">
             <div class="sb-sidenav-menu-heading">Dictionary</div>
-            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
+            <a class="nav-link" routerLink="/search" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
               Search
             </a>
-            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
+            <a class="nav-link" routerLink="/searchkanji" [queryParams]="{ resultSearch: 'kanji' }" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-paint-brush"></i></div>
               Kanji
             </a>
-            <a class="nav-link" routerLink="charts.html" routerLinkActive="active">
+            <a class="nav-link" routerLink="/searchradicals" [queryParams]="{ resultSearch: 'radical' }" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-th-large"></i></div>
               Radicals
             </a>
-            <a class="nav-link" routerLink="tables.html" routerLinkActive="active">
+            <a class="nav-link" routerLink="/searchvocabulary" [queryParams]="{ resultSearch: 'vocabulary' }" routerLinkActive="active">
               <div class="sb-nav-link-icon"><i class="fas fa-font"></i></div>
               Vocabulary
             </a>

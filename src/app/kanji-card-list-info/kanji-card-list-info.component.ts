@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Utils} from '../../utils/utils';
-import {KanjiCard} from '../../supportInterfaces/kanji.card';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Backend} from '../../backend/backend';

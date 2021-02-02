@@ -5,18 +5,18 @@
   <div class="card-group mb-4">
     <a class="itemCard listData bg-info text-white cardData" [routerLink]="['/kanjicards', kanjiCard._id]" [queryParams]="{sourceURL: router.url}">
       <div>
-        0
+        {{kanjiCard.kanji}}
       </div>
       <div class="contentTable">
         <div>
-          <div>Kanji:</div>
           <div>Repetitions:</div>
           <div>Learned Status:</div>
+          <div>Create Date:</div>
         </div>
         <div>
-          <div>{{kanjiCard.kanji}}</div>
           <div>{{kanjiCard.repetitions}}</div>
           <div>{{utils.convertLearnedStatus(kanjiCard.learnedStatus)}}</div>
+          <div>{{utils.convertDate(kanjiCard.createDate)}}</div>
         </div>
       </div>
     </a>

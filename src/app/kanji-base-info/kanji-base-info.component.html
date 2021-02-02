@@ -1,15 +1,15 @@
-<a *ngIf="!loading" class="kanjiLink itemCard bg-success">
-  <div class="kanjiLinkKanji">{{kanji._id}}</div>
-  <div class="kanjiLinkData contentTable">
+<a *ngIf="!loading" class="linkedCard itemCard bg-success">
+  <div class="linkedCardID">{{kanji._id}}</div>
+  <div class="linkedCardData contentTable">
     <div>
       <div>Meanings:</div>
       <div>On-Readings:</div>
       <div>Kun-Readings:</div>
     </div>
     <div>
-      <div>{{meanings}}</div>
-      <div>{{onReadings}}</div>
-      <div>{{kunReadings}}</div>
+      <div *ngIf="meanings.length > 0">{{meanings}}</div><div *ngIf="meanings.length === 0">-</div>
+      <div *ngIf="onReadings.length > 0">{{onReadings}}</div><div *ngIf="onReadings.length === 0">-</div>
+      <div *ngIf="kunReadings.length > 0">{{kunReadings}}</div><div *ngIf="kunReadings.length === 0">-</div>
     </div>
   </div>
 </a>

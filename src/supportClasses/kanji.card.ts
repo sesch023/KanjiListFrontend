@@ -1,4 +1,4 @@
-export interface KanjiCard {
+export class KanjiCard {
   _id: string;
   kanji: string;
   learnedStatus: number;

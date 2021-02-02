@@ -3,6 +3,8 @@
     <h1>Kanji List: <span>{{data.listName}}</span></h1>
     <div class="btn-group  mb-4">
       <a class="btn btn-success listBtn"  [routerLink]="['/addkanjicard', data._id]" [queryParams]="{sourceURL: router.url}">Add Card</a>
+      <a class="btn btn-primary listBtn" *ngIf="listDueNum && listDueNum > 0" [routerLink]="['/repeatlist', data._id]" [queryParams]="{sourceURL: router.url}">Repeat {{listDueNum}} Cards</a>
+      <a class="btn btn-secondary listBtn disabled" *ngIf="!listDueNum || listDueNum == 0">No Cards Due</a>
       <a class="btn btn-danger listBtn"  (click)="removeKanjiList()">Remove List</a>
     </div>
     <div>

@@ -5,10 +5,15 @@
     <div *ngIf="data.length === 0">
       <img class="noResultImg" alt="No Results" src="../../assets/no_results.gif"/>
     </div>
-    <div class="card-group mb-4 " *ngFor="let item of data">
+    <div class="card-group mb-4 " *ngFor="let item of data; let index = index">
       <a class="listData itemCard bg-info text-white cardData" [routerLink]="['/kanjilists', item._id]">
-        <div>
+        <div *ngIf="listDue[index] !== null">
           {{item.kanjiCards.length}}
+        </div>
+        <div *ngIf="listDue[index] === null">
+          <span class="fa-3x">
+            <i class="fas fa-spinner fa-spin"></i>
+          </span>
         </div>
         <div>
           <div class="contentTable">

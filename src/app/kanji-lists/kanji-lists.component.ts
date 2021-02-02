@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Utils} from '../../utils/utils';
-import {KanjiList} from '../../supportInterfaces/kanji.list';
+import {KanjiList} from '../../supportClasses/kanji.list';
 import {Backend} from '../../backend/backend';
 import {Router} from '@angular/router';
 import {AlertService} from '../alertService/alert.service';
 import {MatDialog} from '@angular/material/dialog';
-import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-kanji-lists',
@@ -17,6 +16,7 @@ export class KanjiListsComponent implements OnInit {
   utils = Utils;
   loading = true;
   data: Array<KanjiList>;
+  listDue: Array<number> = [];
   router: Router;
   backend = Backend;
 
@@ -46,6 +46,13 @@ export class KanjiListsComponent implements OnInit {
   getData(): void {
     this.loading = true;
     this.backend.getKanjiLists(this.http).subscribe((data: Array<KanjiList>) => {
+      for (let i = 0; i < data.length; i++){
+        this.listDue.push(null);
+        this.backend.getRepetitionList(data[i]._id, this.http).subscribe((repData: KanjiList) => {
+          this.listDue[i] = repData.kanjiCards.length;
+          console.log(this.listDue);
+        });
+      }
       this.data = data;
       this.loading = false;
     });

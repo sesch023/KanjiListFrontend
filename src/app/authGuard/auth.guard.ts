@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
 
   checkLoggedIn(): Observable<boolean> {
     const currentUser = this.authenticationService.currentUserValue;
-    if (currentUser) {
+    if (currentUser  && currentUser.length > 0) {
       return this.http.get<any>(`${config.apiUrl}/api/isLoggedIn`, {withCredentials: true});
     }
     else {

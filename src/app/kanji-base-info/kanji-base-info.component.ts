@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Kanji} from '../../supportInterfaces/kanji';
+import {Kanji} from '../../supportClasses/kanji';
 import {HttpClient} from '@angular/common/http';
 import {Backend} from '../../backend/backend';
 
@@ -10,8 +10,8 @@ import {Backend} from '../../backend/backend';
 })
 export class KanjiBaseInfoComponent implements OnInit {
   @Input() kanjiID: string;
+  @Input() kanji: Kanji;
   loading = true;
-  kanji: Kanji;
   meanings: string;
   onReadings: string;
   kunReadings: string;
@@ -19,14 +19,24 @@ export class KanjiBaseInfoComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  setInfo(): void {
+    this.meanings = this.kanji.meanings.join(', ');
+    this.onReadings = this.kanji.onReadings.join(', ');
+    this.kunReadings = this.kanji.kunReadings.join(', ');
+    this.loading = false;
+  }
+
   ngOnInit(): void {
-    this.backend.getKanji(this.kanjiID, this.http).subscribe((kanji: Kanji) => {
-      this.kanji = kanji;
-      this.meanings = this.kanji.meanings.join(', ');
-      this.onReadings = this.kanji.onReadings.join(', ');
-      this.kunReadings = this.kanji.kunReadings.join(', ');
-      this.loading = false;
-    });
+    if (!this.kanji){
+      this.backend.getKanji(this.kanjiID, this.http).subscribe((kanji: Kanji) => {
+        this.kanji = kanji;
+        this.setInfo();
+      });
+    }
+    else {
+      this.kanjiID = this.kanji._id;
+      this.setInfo();
+    }
   }
 
 }
