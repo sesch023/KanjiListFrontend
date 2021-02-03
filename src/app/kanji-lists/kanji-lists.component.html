@@ -8,7 +8,7 @@
     <div class="card-group mb-4 " *ngFor="let item of data; let index = index">
       <a class="listData itemCard bg-info text-white cardData" [routerLink]="['/kanjilists', item._id]">
         <div *ngIf="listDue[index] !== null">
-          {{item.kanjiCards.length}}
+          {{listDue[index]}}
         </div>
         <div *ngIf="listDue[index] === null">
           <span class="fa-3x">

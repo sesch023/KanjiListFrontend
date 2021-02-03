@@ -6,6 +6,7 @@ import {Backend} from '../../backend/backend';
 import {Router} from '@angular/router';
 import {AlertService} from '../alertService/alert.service';
 import {MatDialog} from '@angular/material/dialog';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 
 @Component({
   selector: 'app-kanji-lists',
@@ -48,9 +49,8 @@ export class KanjiListsComponent implements OnInit {
     this.backend.getKanjiLists(this.http).subscribe((data: Array<KanjiList>) => {
       for (let i = 0; i < data.length; i++){
         this.listDue.push(null);
-        this.backend.getRepetitionList(data[i]._id, this.http).subscribe((repData: KanjiList) => {
-          this.listDue[i] = repData.kanjiCards.length;
-          console.log(this.listDue);
+        this.backend.getRepetitionList(data[i]._id, this.http).subscribe((repData: Array<KanjiCard>) => {
+          this.listDue[i] = repData.length;
         });
       }
       this.data = data;

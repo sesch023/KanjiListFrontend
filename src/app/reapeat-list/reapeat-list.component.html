@@ -1,1 +1,6 @@
-<p>reapeat-list works!</p>
+<h1>Repetition</h1>
+<div *ngFor="let item of repitionChain; let index = index" >
+  <app-repeat-list-card *ngIf="currentCard === index" [kanjiID]="data.kanjiCards[item[0]].kanji"
+                        [writeMode]="item[1] === 'W'" (selfJudgedResultEvent)="nextCard($event)">
+  </app-repeat-list-card>
+</div>

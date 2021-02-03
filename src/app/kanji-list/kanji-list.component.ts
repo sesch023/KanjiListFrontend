@@ -47,8 +47,8 @@ export class KanjiListComponent implements OnInit {
   getData(): void {
     const listID = this.route.snapshot.paramMap.get('id');
     this.backend.getKanjiList(listID, this.http).subscribe((data: KanjiList) => {
-      this.backend.getRepetitionList(listID, this.http).subscribe((repData: KanjiList) => {
-        this.listDueNum = repData.kanjiCards.length;
+      this.backend.getRepetitionList(listID, this.http).subscribe((repData: Array<KanjiCard>) => {
+        this.listDueNum = repData.length;
       });
       this.data = data;
       this.loading = false;

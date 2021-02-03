@@ -1,0 +1,6 @@
+<app-kanji-base-info [kanji]="kanji"></app-kanji-base-info>
+<div class="btn-group-lg">
+  <button class="btn-danger" (click)="selfJudge(-0.1)">Wrong (-1 Level)</button>
+  <button class="btn-info" (click)="selfJudge(0.1)">Right (+1 Level)</button>
+  <button class="btn-success" (click)="selfJudge(0.2)">Easy (+2 Level)</button>
+</div>

@@ -1,21 +1,29 @@
 export default {
   apiUrl: 'http://localhost:4200',
   vocabularyLevels: {
-    0: 'New',
-    0.1: 'New',
-    0.2: 'New',
-    0.4: 'Started',
-    0.5: 'Started',
-    0.6: 'Started',
-    0.7: 'Learned',
-    0.8: 'Learned',
-    0.9: 'Learned',
+    0: 'New G1',
+    0.1: 'New G2',
+    0.2: 'New G3',
+    0.3: 'Started G1',
+    0.4: 'Started G2',
+    0.5: 'Started G3',
+    0.6: 'Learned G1',
+    0.7: 'Learned G2',
+    0.8: 'Learned G3',
+    0.9: 'Understood',
     1: 'Mastered'
   },
   vocabularyReverseLevels: {
-    New: 0,
-    Started: 0.4,
-    Learned: 0.7,
+    'New G1': 0,
+    'New G2': 0.1,
+    'New G3': 0.2,
+    'Started G1': 0.3,
+    'Started G2': 0.4,
+    'Started G3': 0.5,
+    'Learned G1': 0.6,
+    'Learned G2': 0.7,
+    'Learned G3': 0.8,
+    Understood: 0.9,
     Mastered: 1
   }
 };

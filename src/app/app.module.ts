@@ -34,6 +34,8 @@ import { SearchFormTopComponent } from './search-form-top/search-form-top.compon
 import { RadicalBaseInfoComponent } from './radical-base-info/radical-base-info.component';
 import { VocabularyBaseInfoComponent } from './vocabulary-base-info/vocabulary-base-info.component';
 import { ReapeatListComponent } from './reapeat-list/reapeat-list.component';
+import { RepeatListCardComponent } from './repeat-list-card/repeat-list-card.component';
+import { RepeatListCardResultComponent } from './repeat-list-card-result/repeat-list-card-result.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ReapeatListComponent } from './reapeat-list/reapeat-list.component';
     SearchFormTopComponent,
     RadicalBaseInfoComponent,
     VocabularyBaseInfoComponent,
-    ReapeatListComponent
+    ReapeatListComponent,
+    RepeatListCardComponent,
+    RepeatListCardResultComponent
   ],
   imports: [
     BrowserModule,

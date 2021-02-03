@@ -32,6 +32,11 @@ export class Backend {
     return http.put<any>(`${config.apiUrl}/api/updateKanjiCard/${cardID}?learnedStatus=${learnedStatus}`, {note}, {withCredentials: true});
   }
 
+  static updateKanjiCardRepeat(cardID: string, learnedStatus: number,  http: HttpClient): Observable<void> {
+    return http.put<any>(`${config.apiUrl}/api/updateKanjiCard/${cardID}?learnedStatus=${learnedStatus}&updateRepeatDate=1`, {},
+      {withCredentials: true});
+  }
+
   static addKanjiCard(listID: string, kanji: string, http: HttpClient): Observable<string> {
     return http.post<any>(`${config.apiUrl}/api/addKanjiCard/${listID}?kanji=${kanji}`, {}, {withCredentials: true});
   }
@@ -40,7 +45,7 @@ export class Backend {
     return http.get<any>(`${config.apiUrl}/api/getKanjiList/${listID}`, {withCredentials: true});
   }
 
-  static getRepetitionList(listID: string, http: HttpClient, limit: number = Infinity): Observable<KanjiList>{
+  static getRepetitionList(listID: string, http: HttpClient, limit: number = Infinity): Observable<Array<KanjiCard>>{
     if (isFinite(limit)){
       return http.get<any>(`${config.apiUrl}/api/getRepetitionList/${listID}?cardsLimit=${limit}`, {withCredentials: true});
     } else {
