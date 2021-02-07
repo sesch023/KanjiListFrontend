@@ -35,8 +35,16 @@
         <div class="col-sm-12 col-md-7">
           <div class="dataTables_paginate paging_simple_numbers">
             <ul class="pagination">
-              <li *ngFor="let item of paginations; let index = index" [className]="index === currentPagination ? 'active paginate_button page-item': 'paginate_button page-item'">
-                <button (click)="nextPage(item, item + DEFAULT_PAGINATION)" class="page-link">{{index + 1}}</button>
+              <li *ngIf="paginations.length > 9" [className]="currentPagination === 0? 'active paginate_button page-item': 'paginate_button page-item'">
+                <button  (click)="nextPage(paginations[0], paginations[0] + DEFAULT_PAGINATION)" class="page-link">First</button>
+              </li>
+              <ng-container *ngFor="let item of paginations; let index = index" >
+                <li *ngIf="index + 5 > currentPagination && index - 5 < currentPagination" [className]="index === currentPagination ? 'active paginate_button page-item': 'paginate_button page-item'">
+                  <button  (click)="nextPage(item, item + DEFAULT_PAGINATION)" class="page-link">{{index + 1}}</button>
+                </li>
+              </ng-container>
+              <li *ngIf="paginations.length > 9" [className]="currentPagination === paginations.length - 1? 'active paginate_button page-item': 'paginate_button page-item'">
+                <button  (click)="nextPage(paginations[paginations.length - 1], paginations[paginations.length - 1] + DEFAULT_PAGINATION)" class="page-link">Last</button>
               </li>
             </ul>
           </div>
