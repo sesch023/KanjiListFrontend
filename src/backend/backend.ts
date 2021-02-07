@@ -65,9 +65,10 @@ export class Backend {
     return http.get<any>(`${config.apiUrl}/api/getKanjiLists`, {withCredentials: true});
   }
 
-  static search(searchTerm: string, filterDoc: string, searchFor: Array<string>, http: HttpClient): Observable<object> {
-    return http.get<any>(`${config.apiUrl}/api/search?searchTerm=${searchTerm}&filterDoc=${filterDoc}&resultSearch=${JSON.stringify(searchFor)}`,
-      {withCredentials: true});
+  static search(searchTerm: string, filterDoc: string, searchFor: Array<string>, sliceLow: number, sliceHigh: number, http: HttpClient)
+    : Observable<object> {
+    return http.get<any>(`${config.apiUrl}/api/search?searchTerm=${searchTerm}&filterDoc=${filterDoc}&` +
+      `resultSearch=${JSON.stringify(searchFor)}&sliceLow=${sliceLow}&sliceHigh=${sliceHigh}`, {withCredentials: true});
   }
 
   static signup(email: string, password: string, http: HttpClient): Observable<void> {

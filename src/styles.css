@@ -118,6 +118,29 @@ h1, h2 {
   display: inline-block;
 }
 
+.kanjiRepeatWriteCard {
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.kanjiRepeatReadCard {
+  width: 100%;
+  font-size: 75px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.resultBox {
+  font-size: 20px;
+  text-align: center;
+}
+
+.revealButton {
+  font-size: 45px;
+}
+
 .cardArea {
   overflow: auto;
   resize: none;
@@ -128,6 +151,10 @@ h1, h2 {
   border-radius: 0.25rem;
   font-size: 15px;
   min-height: 200px;
+}
+
+.pagination {
+  justify-content: flex-end;
 }
 
 .cardArea:not(:focus) {

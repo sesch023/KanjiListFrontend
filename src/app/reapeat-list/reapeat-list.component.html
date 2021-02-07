@@ -1,6 +1,25 @@
-<h1>Repetition</h1>
-<div *ngFor="let item of repitionChain; let index = index" >
-  <app-repeat-list-card *ngIf="currentCard === index" [kanjiID]="data.kanjiCards[item[0]].kanji"
-                        [writeMode]="item[1] === 'W'" (selfJudgedResultEvent)="nextCard($event)">
-  </app-repeat-list-card>
+<div class="container-fluid">
+  <div *ngIf="!repetitionOver">
+    <h1 class="text-center">Repetition</h1>
+    <div *ngFor="let item of repitionChain; let index = index" >
+      <app-repeat-list-card *ngIf="currentCard === index" [kanjiID]="data[item[0]].kanji"
+                            [writeMode]="item[1] === 'W'" (selfJudgedResultEvent)="nextCard($event)">
+      </app-repeat-list-card>
+    </div>
+  </div>
+  <div *ngIf="repetitionOver">
+    <h1 class="text-center">Repetition Results</h1>
+    <div class="card bg-info p-4 text-white">
+      <div *ngFor="let item of repPoints; let index = index" class="resultBox">
+        <span>{{this.data[index].kanji}}: </span>
+        <span>{{this.utils.convertLearnedStatus(this.oldStati[index])}}</span>
+        <span class="pl-2 pr-2"><i class="fas fa-arrow-right"></i></span>
+        <span>{{this.utils.convertLearnedStatus(this.repPoints[index])}}</span>
+      </div>
+    </div>
+    <div class="btn-group w-100 mt-4">
+      <button class="btn btn-danger" (click)="returnFromRep()">Reset Results</button>
+      <button class="btn btn-success" (click)="updateList()">Keep Results</button>
+    </div>
+  </div>
 </div>

@@ -7,6 +7,7 @@ import {Backend} from '../../backend/backend';
 import {HttpClient} from '@angular/common/http';
 import {AlertService} from '../alertService/alert.service';
 import {Observable} from 'rxjs';
+import {KanjiCard} from '../../supportClasses/kanji.card';
 
 @Component({
   selector: 'app-reapeat-list',
@@ -16,26 +17,30 @@ import {Observable} from 'rxjs';
 export class ReapeatListComponent implements OnInit {
   utils = Utils;
   loading = true;
-  data: KanjiList;
+  data: Array<KanjiCard>;
   backend = Backend;
   repitionChain: Array<any> = [];
   repPoints: Array<number> = [];
   cardsUpdated = false;
   repetitionOver = false;
   currentCard = 0;
+  sourceURL: string;
+  oldStati: Array<number> = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private alertService: AlertService) { }
 
   ngOnInit(): void {
     const listID = this.route.snapshot.paramMap.get('id');
-    this.backend.getRepetitionList(listID, this.http).subscribe((repData: KanjiList) => {
-      if (repData.kanjiCards.length === 0) {
+    this.sourceURL = this.route.snapshot.queryParamMap.get('sourceURL');
+    this.backend.getRepetitionList(listID, this.http).subscribe((repData: Array<KanjiCard>) => {
+      if (repData.length === 0) {
         this.router.navigate(['/dashboard']);
         this.alertService.error('No cards to repeat in list!', false);
       } else {
         this.data = repData;
-        for (let i = 0; i < this.data.kanjiCards.length; i++) {
-          this.repPoints.push(0);
+        for (let i = 0; i < this.data.length; i++) {
+          this.oldStati.push(this.data[i].learnedStatus);
+          this.repPoints.push(this.data[i].learnedStatus);
           this.repitionChain.push([i, 'R']);
           this.repitionChain.push([i, 'W']);
         }
@@ -48,30 +53,44 @@ export class ReapeatListComponent implements OnInit {
 
   nextCard(result: number): void {
     this.repPoints[this.repitionChain[this.currentCard][0]] += result;
+
     this.currentCard += 1;
     if (this.currentCard >= this.repitionChain.length){
+      this.normalizeRepPoints();
       this.repetitionOver = true;
-      this.updateList();
+    }
+  }
+
+  normalizeRepPoints(): void {
+    for (let i = 0; i < this.repPoints.length; i++){
+      if (this.repPoints[i] > 1.0){
+        this.repPoints[i] = 1.0;
+      }
+      else if (this.repPoints[i] < 0.0){
+        this.repPoints[i] = 0.0;
+      }
+
+      this.repPoints[i] = Math.round(this.repPoints[i] * 10.0) / 10.0;
     }
   }
 
   updateList(): void {
     const cardsUpdated = [];
     for (let i = 0; i < this.repPoints.length; i++){
-      let learnedStatus = this.data.kanjiCards[i].learnedStatus + this.repPoints[i];
-      learnedStatus = Math.round(learnedStatus * 10.0) / 10.0;
-      if (learnedStatus > 1.0){
-        learnedStatus = 1.0;
-      }
-      else if (learnedStatus < 0.0){
-        learnedStatus = 0.0;
-      }
-      cardsUpdated.push(this.backend.updateKanjiCardRepeat(this.data.kanjiCards[i]._id, learnedStatus, this.http));
-      console.log(cardsUpdated);
+      cardsUpdated.push(this.backend.updateKanjiCardRepeat(this.data[i]._id, this.repPoints[i], this.http));
     }
 
     forkJoin(cardsUpdated).subscribe(() => {
       this.cardsUpdated = true;
+      this.returnFromRep();
     });
+  }
+
+  returnFromRep(): void {
+    if (this.sourceURL){
+      this.router.navigate([this.sourceURL]);
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

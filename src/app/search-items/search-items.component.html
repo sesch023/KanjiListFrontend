@@ -1,0 +1,50 @@
+<div *ngIf="!loading" class="card">
+  <button data-toggle="collapse" [attr.data-target]="'#collpase_' + searchFor" class="text-left card-header btn btn-light"
+          aria-expanded="true" [attr.aria-controls]="'collpase_' + searchFor">
+    <span *ngIf="searchFor === 'vocabulary'">
+      <i class="fas fa-font mr-2"></i>
+      Vocabulary -
+    </span>
+    <span *ngIf="searchFor === 'radical'">
+      <i class="fas fa-font mr-2"></i>
+      Radicals -
+    </span>
+    <span *ngIf="searchFor === 'kanji'">
+      <i class="fas fa-font mr-2"></i>
+      Kanji -
+    </span>
+    {{result.length}} Results
+  </button>
+  <div id="collpase_{{searchFor}}" class="collapse card-body">
+    <div *ngIf="result.length > 0">
+      <div *ngIf="searchFor === 'vocabulary'">
+        <app-vocabulary-base-info [vocabulary]="item" *ngFor="let item of result.data"></app-vocabulary-base-info>
+      </div>
+      <div *ngIf="searchFor === 'radical'">
+        <app-radical-base-info [radical]="item" *ngFor="let item of result.data"></app-radical-base-info>
+      </div>
+      <div *ngIf="searchFor === 'kanji'">
+        <app-kanji-base-info [kanji]="item" *ngFor="let item of result.data"></app-kanji-base-info>
+      </div>
+      <div class="row"  *ngIf="paginations.length > 1">
+        <div class="col-sm-12 col-md-5">
+          <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+            Showing {{sliceLow + 1}} to {{getMaxPage()}} of {{result.length}} results
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+          <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+              <li *ngFor="let item of paginations; let index = index" [className]="index === currentPagination ? 'active paginate_button page-item': 'paginate_button page-item'">
+                <button (click)="nextPage(item, item + DEFAULT_PAGINATION)" class="page-link">{{index + 1}}</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="result.length === 0">
+      No results
+    </div>
+  </div>
+</div>

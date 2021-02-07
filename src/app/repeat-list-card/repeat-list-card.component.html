@@ -1,16 +1,18 @@
 <div *ngIf="!loading">
   <div *ngIf="repetition">
     <div *ngIf="writeMode">
-      <h2>Write the Kanji with the following meanings.</h2>
-      {{kanji.meanings}}
+      <h2 class="text-center">Write the Kanji with the following meanings.</h2>
+      <div class="kanjiRepeatWriteCard cardData itemCard bg-primary">
+        {{kanji.meanings}}
+      </div>
     </div>
     <div *ngIf="!writeMode">
-      <h2>What are the meanings and readings of this Kanji?</h2>
-      <div>
+      <h2 class="text-center">What are the meanings and readings of this Kanji?</h2>
+      <div class="kanjiRepeatReadCard cardData itemCard bg-primary">
         {{kanji._id}}
       </div>
     </div>
-    <button class="btn-info" (click)="showInfo()">Show Info</button>
+    <button class="btn btn-info w-100 revealButton mt-4" style="font-size: 20px" (click)="showInfo()">Reveal Info</button>
   </div>
   <div *ngIf="!repetition">
     <app-repeat-list-card-result [kanji]="kanji" (selfJudgedResultEvent)="selfJudge($event)"></app-repeat-list-card-result>

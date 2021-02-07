@@ -36,6 +36,7 @@ import { VocabularyBaseInfoComponent } from './vocabulary-base-info/vocabulary-b
 import { ReapeatListComponent } from './reapeat-list/reapeat-list.component';
 import { RepeatListCardComponent } from './repeat-list-card/repeat-list-card.component';
 import { RepeatListCardResultComponent } from './repeat-list-card-result/repeat-list-card-result.component';
+import { SearchItemsComponent } from './search-items/search-items.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { RepeatListCardResultComponent } from './repeat-list-card-result/repeat-
     VocabularyBaseInfoComponent,
     ReapeatListComponent,
     RepeatListCardComponent,
-    RepeatListCardResultComponent
+    RepeatListCardResultComponent,
+    SearchItemsComponent
   ],
   imports: [
     BrowserModule,
