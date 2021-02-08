@@ -12,6 +12,7 @@ import {Radical} from '../../supportClasses/radical';
 export class VocabularyBaseInfoComponent implements OnInit {
   @Input() vocabulary: Vocabulary;
   @Input() vocabularyID: string;
+  @Input() linked = true;
   translations: string;
   loading = true;
   backend = Backend;

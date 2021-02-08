@@ -31,6 +31,17 @@ export class KanjiListComponent implements OnInit {
     this.router = router;
   }
 
+  renameKanjiList(): void {
+    const dialogRef = this.utils.createNameDialog(this.dialog, 'Please give a new name for the list');
+    dialogRef.afterClosed().subscribe(result => {
+      if (this.utils.isString(result)){
+        this.backend.editKanjiList(this.data._id, String(result), this.http).subscribe(() => {
+          this.utils.reloadPage(this.router, this.route);
+        });
+      }
+    });
+  }
+
   removeKanjiList(): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
 

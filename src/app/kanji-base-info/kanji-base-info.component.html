@@ -1,4 +1,4 @@
-<a *ngIf="!loading" class="linkedCard itemCard bg-success">
+<a *ngIf="!loading && linked" class="linkedCard itemCard bg-success" [routerLink]="['/kanji', kanji._id]">
   <div class="linkedCardID">{{kanji._id}}</div>
   <div class="linkedCardData contentTable">
     <div>
@@ -13,3 +13,18 @@
     </div>
   </div>
 </a>
+<div *ngIf="!loading && !linked" class="nonLinkedCard itemCard bg-success">
+  <div class="linkedCardID">{{kanji._id}}</div>
+  <div class="linkedCardData contentTable">
+    <div>
+      <div>Meanings:</div>
+      <div>On-Readings:</div>
+      <div>Kun-Readings:</div>
+    </div>
+    <div>
+      <div *ngIf="meanings.length > 0">{{meanings}}</div><div *ngIf="meanings.length === 0">-</div>
+      <div *ngIf="onReadings.length > 0">{{onReadings}}</div><div *ngIf="onReadings.length === 0">-</div>
+      <div *ngIf="kunReadings.length > 0">{{kunReadings}}</div><div *ngIf="kunReadings.length === 0">-</div>
+    </div>
+  </div>
+</div>

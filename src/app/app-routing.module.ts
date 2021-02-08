@@ -16,6 +16,9 @@ import {SettingsComponent} from './settings/settings.component';
 import {ValidatemailComponent} from './validatemail/validatemail.component';
 import {SearchComponent} from './search/search.component';
 import {ReapeatListComponent} from './reapeat-list/reapeat-list.component';
+import {KanjiInfoComponent} from './kanji-info/kanji-info.component';
+import {RadicalInfoComponent} from './radical-info/radical-info.component';
+import {VocabularyInfoComponent} from './vocabulary-info/vocabulary-info.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +36,9 @@ const routes: Routes = [
   { path: 'repeatlist/:id', component: ReapeatListComponent, canActivate: [AuthGuard] },
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
   { path: 'search/:term', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'kanji/:id', component: KanjiInfoComponent, canActivate: [AuthGuard]},
+  { path: 'radical/:id', component: RadicalInfoComponent, canActivate: [AuthGuard]},
+  { path: 'vocabulary/:id', component: VocabularyInfoComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

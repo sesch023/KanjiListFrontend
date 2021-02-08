@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div *ngIf="!loading" >
-    <h1>Kanji List: <span>{{data.listName}}</span></h1>
+    <h1>Kanji List: <span>{{data.listName}}</span><button (click)="renameKanjiList()" class="btn btn-light ml-3"><i class="fas fa-edit"></i></button></h1>
     <div class="btn-group  mb-4">
       <a class="btn btn-success listBtn"  [routerLink]="['/addkanjicard', data._id]" [queryParams]="{sourceURL: router.url}">Add Card</a>
       <a class="btn btn-primary listBtn" *ngIf="listDueNum && listDueNum > 0" [routerLink]="['/repeatlist', data._id]" [queryParams]="{sourceURL: router.url}">Repeat {{listDueNum}} Cards</a>

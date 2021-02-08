@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class RadicalBaseInfoComponent implements OnInit {
   @Input() radicalID: string;
   @Input() radical: Radical;
+  @Input() linked = true;
   meanings: string;
   loading = true;
   backend = Backend;

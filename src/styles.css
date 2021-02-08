@@ -13,6 +13,10 @@ h1, h2 {
   margin-top: 25px;
 }
 
+.mat-dialog-content {
+  overflow: visible !important;
+}
+
 .topSpacing {
   margin-top: 25px;
 }
@@ -21,6 +25,20 @@ h1, h2 {
   color: #fff;
   padding: 20px 30px;
   cursor: pointer;
+  display: flex;
+  width: auto;
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  border-radius: 0.25rem;
+  margin-bottom: 20px;
+}
+
+.nonLinkedCard {
+  color: #fff;
+  padding: 20px 30px;
   display: flex;
   width: auto;
   box-sizing: border-box;

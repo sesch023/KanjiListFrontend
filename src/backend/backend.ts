@@ -9,6 +9,7 @@ import {Vocabulary} from '../supportClasses/vocabulary';
 
 export class Backend {
   static getKanji(kanji: string, http: HttpClient): Observable<Kanji> {
+    console.log(kanji);
     return http.get<any>(`${config.apiUrl}/api/kanjiinfo/${kanji}`, {withCredentials: true});
   }
 
@@ -63,6 +64,10 @@ export class Backend {
 
   static getKanjiLists(http: HttpClient): Observable<Array<KanjiList>>{
     return http.get<any>(`${config.apiUrl}/api/getKanjiLists`, {withCredentials: true});
+  }
+
+  static editKanjiList(listID: string, newName: string, http: HttpClient): Observable<void>{
+    return http.put<any>(`${config.apiUrl}/api/editKanjiList/${listID}?newName=${newName}`, {withCredentials: true});
   }
 
   static search(searchTerm: string, filterDoc: string, searchFor: Array<string>, sliceLow: number, sliceHigh: number, http: HttpClient)

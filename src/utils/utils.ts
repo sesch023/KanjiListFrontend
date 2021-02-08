@@ -2,6 +2,8 @@ import config from '../config';
 import {formatDate} from '@angular/common';
 import {ConfirmationDialogComponent} from '../app/confirmation-dialog/confirmation-dialog.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ListNameDialogComponent} from '../app/list-name-dialog/list-name-dialog.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 export class Utils {
   static convertLearnedStatus(learnedStatus: number): string {
@@ -34,5 +36,18 @@ export class Utils {
       width: '350px',
       data: text
     });
+  }
+
+  static createNameDialog(dialog: MatDialog, text: string): MatDialogRef<ListNameDialogComponent> {
+    return dialog.open(ListNameDialogComponent, {
+      width: '400px',
+      data: text
+    });
+  }
+
+  static reloadPage(router: Router, route: ActivatedRoute): void{
+    router.routeReuseStrategy.shouldReuseRoute = () => false;
+    router.onSameUrlNavigation = 'reload';
+    router.navigate(['./'], { relativeTo: route });
   }
 }

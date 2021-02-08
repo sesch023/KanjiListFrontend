@@ -37,6 +37,10 @@ import { ReapeatListComponent } from './reapeat-list/reapeat-list.component';
 import { RepeatListCardComponent } from './repeat-list-card/repeat-list-card.component';
 import { RepeatListCardResultComponent } from './repeat-list-card-result/repeat-list-card-result.component';
 import { SearchItemsComponent } from './search-items/search-items.component';
+import { ListNameDialogComponent } from './list-name-dialog/list-name-dialog.component';
+import { KanjiInfoComponent } from './kanji-info/kanji-info.component';
+import { VocabularyInfoComponent } from './vocabulary-info/vocabulary-info.component';
+import { RadicalInfoComponent } from './radical-info/radical-info.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,11 @@ import { SearchItemsComponent } from './search-items/search-items.component';
     ReapeatListComponent,
     RepeatListCardComponent,
     RepeatListCardResultComponent,
-    SearchItemsComponent
+    SearchItemsComponent,
+    ListNameDialogComponent,
+    KanjiInfoComponent,
+    VocabularyInfoComponent,
+    RadicalInfoComponent
   ],
   imports: [
     BrowserModule,
