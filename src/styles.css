@@ -150,9 +150,19 @@ h1, h2 {
   margin: 0 auto;
 }
 
+.dropdown-item {
+  cursor: pointer;
+}
+
 .resultBox {
   font-size: 20px;
   text-align: center;
+}
+
+.kanjiInfoImg img {
+  width: 150px;
+  margin-bottom: 10px;
+  height: auto;
 }
 
 .revealButton {

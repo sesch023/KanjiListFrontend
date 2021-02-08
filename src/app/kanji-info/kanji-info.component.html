@@ -1,5 +1,97 @@
 <div *ngIf="!loading" class="container-fluid">
-  <h1>Kanji</h1>
+  <h1>Kanji Information</h1>
+  <div *ngIf="kanjiLists.length > 0" class="dropdown mb-4 bg-light">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add to List
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a *ngFor="let list of kanjiLists" class="dropdown-item" (click)="addToList(list._id)">{{list.listName}}</a>
+    </div>
+  </div>
   <app-kanji-base-info [kanji]="kanji" [linked]="false"></app-kanji-base-info>
+  <h2>Extended Information</h2>
+  <div class="card bg-info text-white p-4">
+    <div class="d-flex flex-row">
+      <div class="flex-column flex-grow-1">
+        <div class="row">
+          <div class="col-2">Nanori:</div>
+          <div class="col-lg">
+            {{nanori}}
+            <span *ngIf="nanori.length === 0">-</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Strokes:</div>
+          <div class="col-lg">
+            {{kanji.strokes}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Radical:</div>
+          <div class="col-lg">
+            <a class="text-white stretched-link" [routerLink]="['/radical', kanji.radical]">{{kanji.radical}}</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">JLPT-Level:</div>
+          <div class="col-lg">
+            <span *ngIf="kanji.jlptLevel">{{kanji.jlptLevel}}</span>
+            <span *ngIf="!kanji.jlptLevel">-</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Grade-Level:</div>
+          <div class="col-lg">
+            {{gradeLevel}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Frequency of Use:</div>
+          <div class="col-lg">
+            <span *ngIf="kanji.frequencyOfUse">{{kanji.frequencyOfUse}}</span>
+            <span *ngIf="!kanji.frequencyOfUse">-</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Lookalikes:</div>
+          <div class="col-lg">
+            <span *ngIf="kanji.lookalikes.length > 0">
+              <ng-container *ngFor="let element of kanji.lookalikes">
+                <a class="text-white" [routerLink]="['/kanji', element]">{{element}}</a>&nbsp;&nbsp;
+              </ng-container>
+            </span>
+            <span *ngIf="kanji.lookalikes.length === 0">-</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Parts:</div>
+          <div class="col-lg">
+            <span *ngIf="kanji.parts.length > 0">
+              <ng-container *ngFor="let element of kanji.parts">
+                <span>{{element}}</span>&nbsp;&nbsp;
+              </ng-container>
+            </span>
+            <span *ngIf="kanji.parts.length === 0">-</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-column kanjiInfoImg">
+        <div *ngIf="kanji.strokeOrder">
+          <img [src]="'/api/image/' + kanji.strokeOrder + '?rendered=true'" alt="Stroke Order"/>
+        </div>
+        <div *ngIf="kanji.gyousho">
+          <img [src]="'/api/image/' + kanji.gyousho + '?rendered=true'" alt="Gyousho"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>Example Vocabulary</h2>
+  <div *ngIf="kanji.sampleVocabulary.length > 0">
+    <app-vocabulary-base-info *ngFor="let vocab of kanji.sampleVocabulary.slice(0, 50)" [vocabularyID]="vocab">
+    </app-vocabulary-base-info>
+  </div>
+  <div *ngIf="kanji.sampleVocabulary.length === 0">
+    No results
+  </div>
 </div>
 

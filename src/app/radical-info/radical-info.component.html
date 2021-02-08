@@ -1,5 +1,7 @@
 <div *ngIf="!loading" class="container-fluid">
   <h1>Radical</h1>
   <app-radical-base-info [radical]="radical" [linked]="false"></app-radical-base-info>
+  <h2>Example Kanji</h2>
+  <app-kanji-base-info *ngFor="let item of kanji.slice(0, 50)" [kanji]="item"></app-kanji-base-info>
 </div>
 

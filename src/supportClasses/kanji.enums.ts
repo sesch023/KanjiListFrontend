@@ -28,5 +28,6 @@ export enum VocabularyType {
   'JUKUGO' = 'Jukugo',
   'KOTOWAZA' = 'Kotowaza',
   'YOJIJUKUGO' = 'Yojijukugo',
-  'SENTENCE' = 'Sentence'
+  'SENTENCE' = 'Sentence',
+  'VERB' = 'Verb'
 }

@@ -9,8 +9,11 @@ import {Vocabulary} from '../supportClasses/vocabulary';
 
 export class Backend {
   static getKanji(kanji: string, http: HttpClient): Observable<Kanji> {
-    console.log(kanji);
     return http.get<any>(`${config.apiUrl}/api/kanjiinfo/${kanji}`, {withCredentials: true});
+  }
+
+  static getKanjiWithRadical(radical: string, http: HttpClient): Observable<Array<Kanji>> {
+    return http.get<any>(`${config.apiUrl}/api/kanjiWithRadical/${radical}`, {withCredentials: true});
   }
 
   static getRadical(radical: string, http: HttpClient): Observable<Radical> {

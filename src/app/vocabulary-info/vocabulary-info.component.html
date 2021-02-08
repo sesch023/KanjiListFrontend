@@ -1,5 +1,28 @@
 <div *ngIf="!loading" class="container-fluid">
   <h1>Vocabulary</h1>
   <app-vocabulary-base-info [vocabulary]="vocabulary" [linked]="false"></app-vocabulary-base-info>
+  <h2>Extended Information</h2>
+  <div class="card bg-info text-white p-4">
+    <div class="row">
+      <div class="col-2">JLPT-Level:</div>
+      <div class="col-lg">
+        <span *ngIf="vocabulary.jlptLevel">{{vocabulary.jlptLevel}}</span>
+        <span *ngIf="!vocabulary.jlptLevel">-</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">Type:</div>
+      <div class="col-lg">
+        {{vocabType}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">Pitch Accent:</div>
+      <div class="col-lg">
+        <span *ngIf="vocabulary.pitchAccent">{{vocabulary.pitchAccent}}</span>
+        <span *ngIf="!vocabulary.pitchAccent">-</span>
+      </div>
+    </div>
+  </div>
 </div>
 
