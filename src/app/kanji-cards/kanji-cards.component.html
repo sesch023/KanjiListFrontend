@@ -1,9 +1,0 @@
-<div class="container-fluid">
-  <h1>Kanji Cards</h1>
-  <div *ngIf="!loading">
-    <div *ngIf="data.length === 0">
-      <img class="noResultImg" alt="No Results" src="../../assets/no_results.gif"/>
-    </div>
-    <app-kanji-card-list-info *ngFor="let item of data" [kanjiCard]="item"></app-kanji-card-list-info>
-  </div>
-</div>

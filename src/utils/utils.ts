@@ -1,8 +1,8 @@
 import config from '../config';
 import {formatDate} from '@angular/common';
-import {ConfirmationDialogComponent} from '../app/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../app/dialog/confirmation-dialog/confirmation-dialog.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {ListNameDialogComponent} from '../app/list-name-dialog/list-name-dialog.component';
+import {ListNameDialogComponent} from '../app/dialog/list-name-dialog/list-name-dialog.component';
 import {ActivatedRoute, Router} from '@angular/router';
 
 export class Utils {

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{message}}</h1>
+
+<form mat-dialog-content [formGroup]="form" class="contentBox">
+  <input formControlName="name" value="{{result}}" [ngClass]="{ 'is-invalid': submitted && form.controls.name.errors }" matInput>
+  <div *ngIf="submitted && form.controls.name.errors " class="invalid-feedback">
+    <div *ngIf="submitted &&  form.controls.name.errors ">Name is required</div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">Exit</button>
+    <button mat-raised-button (click)="save()">Ok</button>
+  </div>
+</form>

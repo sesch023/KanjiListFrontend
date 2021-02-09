@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <h1>Search</h1>
+  <div *ngIf="!loading">
+    <app-search-form-top [startValue]="searchTerm"></app-search-form-top>
+  </div>
+  <app-search-result *ngIf="!loading && searchTerm"></app-search-result>
+</div>
+

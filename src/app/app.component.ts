@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthenticationService} from './authService/auth.service';
+import {AuthenticationService} from './auth/authService/auth.service';
 import {Router} from '@angular/router';
-import {AlertService} from './alertService/alert.service';
+import {AlertService} from './misc/alertService/alert.service';
 import {first} from 'rxjs/operators';
 
 @Component({
