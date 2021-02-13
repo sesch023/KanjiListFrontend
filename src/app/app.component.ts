@@ -12,6 +12,7 @@ import {first} from 'rxjs/operators';
 export class AppComponent {
   title = 'KanjiListFrontend';
   currentUser: string;
+
   constructor(
      private authenticationService: AuthenticationService,
      private router: Router,
