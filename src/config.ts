@@ -1,5 +1,5 @@
 export default {
-  apiUrl: 'http://localhost:4200',
+  apiUrl: 'http://localhost:8000',
   vocabularyLevels: {
     0: 'New G1',
     0.1: 'New G2',
