@@ -1,3 +1,6 @@
+/**
+ * Util class for the application.
+ */
 import config from '../config';
 import {formatDate} from '@angular/common';
 import {ConfirmationDialogComponent} from '../app/dialog/confirmation-dialog/confirmation-dialog.component';
@@ -6,6 +9,9 @@ import {ListNameDialogComponent} from '../app/dialog/list-name-dialog/list-name-
 import {ActivatedRoute, Router} from '@angular/router';
 
 export class Utils {
+  /**
+   * Convert a learned Status number with the config to a readable string.
+   */
   static convertLearnedStatus(learnedStatus: number): string {
     const key = Math.floor(learnedStatus * 10) / 10;
     if (config.vocabularyLevels[key]){
@@ -16,10 +22,16 @@ export class Utils {
     }
   }
 
+  /**
+   * Convert a date to a dd.mm.yyyy format.
+   */
   static convertDate(date: string): string{
     return formatDate(date, 'dd.MM.yyyy', 'en-US');
   }
 
+  /**
+   * Shuffles an given Array in place.
+   */
   static shuffleArray(array: Array<any>): void {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -27,10 +39,16 @@ export class Utils {
     }
   }
 
+  /**
+   * Checks if given argument is a string.
+   */
   static isString(el: object): boolean {
     return typeof el === 'string' || el instanceof String;
   }
 
+  /**
+   * Creates a remove dialog.
+   */
   static createRemoveDialog(dialog: MatDialog, text: string): MatDialogRef<ConfirmationDialogComponent> {
     return dialog.open(ConfirmationDialogComponent, {
       width: '350px',
@@ -38,6 +56,9 @@ export class Utils {
     });
   }
 
+  /**
+   * Creates a name dialog.
+   */
   static createNameDialog(dialog: MatDialog, text: string): MatDialogRef<ListNameDialogComponent> {
     return dialog.open(ListNameDialogComponent, {
       width: '400px',
@@ -45,6 +66,9 @@ export class Utils {
     });
   }
 
+  /**
+   * Reloads the page.
+   */
   static reloadPage(router: Router, route: ActivatedRoute): void{
     router.routeReuseStrategy.shouldReuseRoute = () => false;
     router.onSameUrlNavigation = 'reload';

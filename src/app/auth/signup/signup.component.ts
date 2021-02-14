@@ -5,6 +5,9 @@ import {AlertService} from '../../misc/alertService/alert.service';
 import {Backend} from '../../../backend/backend';
 import {HttpClient} from '@angular/common/http';
 
+/**
+ * Component of the signup.
+ */
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -24,6 +27,9 @@ export class SignupComponent implements OnInit {
     private http: HttpClient
   ) {}
 
+  /**
+   * Init of the signup.
+   */
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -34,10 +40,16 @@ export class SignupComponent implements OnInit {
     }, {validators: this.passwordsEqual });
   }
 
+  /**
+   * Check for validating if the passwords are equal.
+   */
   passwordsEqual(control: FormGroup): ValidationErrors | null {
     return control.get('password')?.value !== control.get('passwordRepeat')?.value ? { passwordsNotEqual: true } : null;
   }
 
+  /**
+   * Submits the Form with the current values.
+   */
   onSubmit(): void {
     this.submitted = true;
     this.alertService.clear();

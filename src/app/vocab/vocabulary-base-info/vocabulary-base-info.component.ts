@@ -4,6 +4,9 @@ import {Backend} from '../../../backend/backend';
 import {HttpClient} from '@angular/common/http';
 import {Radical} from '../../../supportClasses/radical';
 
+/**
+ * Basic information of a vocabulary.
+ */
 @Component({
   selector: 'app-vocabulary-base-info',
   templateUrl: './vocabulary-base-info.component.html',
@@ -19,11 +22,17 @@ export class VocabularyBaseInfoComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Sets the info of the vocabulary.
+   */
   setInfo(): void {
     this.translations = this.vocabulary.translations.join(', ');
     this.loading = false;
   }
 
+  /**
+   * Inits the vocabulary card.
+   */
   ngOnInit(): void {
     if (!this.vocabulary){
       this.backend.getVocabulary(this.vocabularyID, this.http).subscribe((vocabulary: Vocabulary) => {

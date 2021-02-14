@@ -4,6 +4,9 @@ import {Router} from '@angular/router';
 import {AlertService} from './misc/alertService/alert.service';
 import {first} from 'rxjs/operators';
 
+/**
+ * Main Component of the application.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,6 +24,9 @@ export class AppComponent {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  /**
+   * Loggs out the user.
+   */
   logout(): void {
     this.authenticationService.logout()
       .subscribe(

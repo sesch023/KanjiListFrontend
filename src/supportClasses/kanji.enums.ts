@@ -1,3 +1,6 @@
+/**
+ * Enums for different datatypes.
+ */
 export enum GradeLevel {
   'HYOUGAIJI' = 'Hyougaiji',
   'JINMEIYOU' = 'Jinmeiyou',

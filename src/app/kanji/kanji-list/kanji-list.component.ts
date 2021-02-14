@@ -9,6 +9,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {Utils} from '../../../utils/utils';
 import {KanjiCard} from '../../../supportClasses/kanji.card';
 
+/**
+ * Component for a kanji list.
+ */
 @Component({
   selector: 'app-kanji-list',
   templateUrl: './kanji-list.component.html',
@@ -31,6 +34,9 @@ export class KanjiListComponent implements OnInit {
     this.router = router;
   }
 
+  /**
+   * Renames the kanji list with a dialog.
+   */
   renameKanjiList(): void {
     const dialogRef = this.utils.createNameDialog(this.dialog, 'Please give a new name for the list');
     dialogRef.afterClosed().subscribe(result => {
@@ -42,6 +48,9 @@ export class KanjiListComponent implements OnInit {
     });
   }
 
+  /**
+   * Removes this kanji list.
+   */
   removeKanjiList(): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
 
@@ -55,6 +64,9 @@ export class KanjiListComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns the data of the kanji list.
+   */
   getData(): void {
     const listID = this.route.snapshot.paramMap.get('id');
     this.backend.getKanjiList(listID, this.http).subscribe((data: KanjiList) => {

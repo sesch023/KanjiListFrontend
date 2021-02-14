@@ -1,3 +1,6 @@
+/**
+ * class for a kanji card.
+ */
 export class KanjiCard {
   _id: string;
   kanji: string;

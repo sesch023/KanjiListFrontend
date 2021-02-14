@@ -3,6 +3,9 @@ import {Kanji} from '../../../supportClasses/kanji';
 import {Backend} from '../../../backend/backend';
 import {HttpClient} from '@angular/common/http';
 
+/**
+ * A single card of a repetition list which is either in write or read mode.
+ */
 @Component({
   selector: 'app-repeat-list-card',
   templateUrl: './repeat-list-card.component.html',
@@ -20,6 +23,9 @@ export class RepeatListCardComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Inits the card.
+   */
   ngOnInit(): void {
     this.backend.getKanji(this.kanjiID, this.http).subscribe(value => {
       this.kanji = value;
@@ -28,10 +34,16 @@ export class RepeatListCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Shows the info of the card.
+   */
   showInfo(): void{
     this.repetition = false;
   }
 
+  /**
+   * Emits the self judged event after the user judged himself.
+   */
   selfJudge(value: number): void{
     this.selfJudgedResultEvent.emit(value);
   }

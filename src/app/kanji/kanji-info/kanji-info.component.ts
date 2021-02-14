@@ -6,6 +6,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {GradeLevel} from '../../../supportClasses/kanji.enums';
 import {KanjiList} from '../../../supportClasses/kanji.list';
 
+/**
+ * Complex dictionary info of a kanji.
+ */
 @Component({
   selector: 'app-kanji-info',
   templateUrl: './kanji-info.component.html',
@@ -25,12 +28,18 @@ export class KanjiInfoComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
+  /**
+   * Adds the kanji to a given list id.
+   */
   addToList(listID: string): void {
     this.backend.addKanjiCard(listID, this.kanji._id, this.http).subscribe(() => {
       this.router.navigate([`/kanjilists/${listID}`]);
     });
   }
 
+  /**
+   * Sets the info of the kanji.
+   */
   setInfo(): void {
     this.meanings = this.kanji.meanings.join(', ');
     this.onReadings = this.kanji.onReadings.join(', ');
@@ -42,6 +51,9 @@ export class KanjiInfoComponent implements OnInit {
     this.loading = false;
   }
 
+  /**
+   * Inits the kanji info.
+   */
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     if (!this.kanji){

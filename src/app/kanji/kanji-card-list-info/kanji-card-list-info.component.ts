@@ -7,6 +7,9 @@ import {Backend} from '../../../backend/backend';
 import {MatDialog} from '@angular/material/dialog';
 import {AlertService} from '../../misc/alertService/alert.service';
 
+/**
+ * Component of a Kanji Card inside a kanji list.
+ */
 @Component({
   selector: 'app-kanji-card-list-info',
   templateUrl: './kanji-card-list-info.component.html',
@@ -25,6 +28,9 @@ export class KanjiCardListInfoComponent implements OnInit {
     this.router = router;
   }
 
+  /**
+   * Removes the Kanji Card and emits a removed event.
+   */
   removeKanjiCard(): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
 
@@ -38,6 +44,9 @@ export class KanjiCardListInfoComponent implements OnInit {
     });
   }
 
+  /**
+   * Inits the kanji card component by loading the kanji card if it hasnt been supplied already.
+   */
   ngOnInit(): void {
     if (!this.kanjiCard) {
       this.backend.getKanjiCard(this.id, this.http).subscribe((item) => {

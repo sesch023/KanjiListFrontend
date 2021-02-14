@@ -5,6 +5,9 @@ import {ActivatedRoute} from '@angular/router';
 import {Vocabulary} from '../../../supportClasses/vocabulary';
 import {VocabularyType} from '../../../supportClasses/kanji.enums';
 
+/**
+ * Component for complex vocabulary information.
+ */
 @Component({
   selector: 'app-vocabulary-info',
   templateUrl: './vocabulary-info.component.html',
@@ -19,6 +22,9 @@ export class VocabularyInfoComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
+  /**
+   * Inits the component.
+   */
   ngOnInit(): void {
     this.vocabularyID = this.route.snapshot.paramMap.get('id');
     this.backend.getVocabulary(this.vocabularyID, this.http).subscribe((vocabulary: Vocabulary) => {

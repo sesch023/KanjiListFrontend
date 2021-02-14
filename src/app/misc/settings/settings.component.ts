@@ -7,6 +7,9 @@ import {AlertService} from '../alertService/alert.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../../auth/authService/auth.service';
 
+/**
+ * Component for the user settings of the application.
+ */
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -23,6 +26,9 @@ export class SettingsComponent{
     private http: HttpClient,
     private authenticationService: AuthenticationService) { }
 
+  /**
+   * Remove the account after a press on the remove account button.
+   */
   removeAccount(): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
 

@@ -7,6 +7,9 @@ import {Backend} from '../../../backend/backend';
 import {HttpBackend, HttpClient} from '@angular/common/http';
 import {Kanji} from '../../../supportClasses/kanji';
 
+/**
+ * Component for adding a new kanji to a list.
+ */
 @Component({
   selector: 'app-kanji-card-add',
   templateUrl: './kanji-card-add.component.html',
@@ -30,10 +33,13 @@ export class KanjiCardAddComponent implements OnInit {
     private httpBackend: HttpBackend,
     private httpGuarded: HttpClient,
     private router: Router) {
-    // New HTTP Backend to pass Interceptors
+    // New HTTP Backend to pass Interceptors, else a kanji that is not found would route the app to the dashboard.
     this.http = new HttpClient(httpBackend);
   }
 
+  /**
+   * Inits the Form.
+   */
   ngOnInit(): void {
     this.addKanjiForm = this.formBuilder.group({
       kanji: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1)]]
@@ -42,6 +48,9 @@ export class KanjiCardAddComponent implements OnInit {
     this.sourceURL = this.route.snapshot.queryParamMap.get('sourceURL');
   }
 
+  /**
+   * Submits the FOrm.
+   */
   onSubmit(): void {
     this.submitted = true;
     const val = this.addKanjiForm.controls.kanji.value;

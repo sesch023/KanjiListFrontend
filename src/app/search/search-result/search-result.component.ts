@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Backend} from '../../../backend/backend';
-import {HttpClient} from '@angular/common/http';
-import {forkJoin, Observable} from 'rxjs';
 import {Kanji} from '../../../supportClasses/kanji';
 import {Radical} from '../../../supportClasses/radical';
 import {Vocabulary} from '../../../supportClasses/vocabulary';
-import {AlertService} from '../../misc/alertService/alert.service';
 
+/**
+ * Component which for all defined search terms, loads the results for a given search term and filter doc.
+ */
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -33,6 +33,9 @@ export class SearchResultComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
+  /**
+   * Inits the component.
+   */
   ngOnInit(): void {
     const validSearchItems = Object.keys(this.result);
     this.searchTerm = this.route.snapshot.paramMap.get('term');

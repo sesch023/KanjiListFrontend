@@ -5,6 +5,9 @@ import config from '../../../config';
 import {Utils} from '../../../utils/utils';
 import {KanjiCard} from '../../../supportClasses/kanji.card';
 
+/**
+ * Component for showing all kanji cards of a user.
+ */
 @Component({
   selector: 'app-kanji-cards',
   templateUrl: './kanji-cards.component.html',
@@ -17,10 +20,16 @@ export class KanjiCardsComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Get all Kanji cards.
+   */
   getKanjiCards(): Observable<Array<object>>{
     return this.http.get<any>(`${config.apiUrl}/api/getKanjiCards`, {withCredentials: true});
   }
 
+  /**
+   * Init the component.
+   */
   ngOnInit(): void {
     this.getKanjiCards().subscribe((data: Array<KanjiCard>) => {
       this.data = data;

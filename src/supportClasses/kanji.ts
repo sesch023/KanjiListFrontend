@@ -1,3 +1,6 @@
+/**
+ * Class for a kanji.
+ */
 import {GradeLevel, JLPTLevel} from './kanji.enums';
 
 export class Kanji {

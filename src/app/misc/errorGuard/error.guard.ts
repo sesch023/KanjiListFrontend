@@ -6,7 +6,9 @@ import {AuthenticationService} from '../../auth/authService/auth.service';
 import {Router} from '@angular/router';
 import {AlertService} from '../alertService/alert.service';
 
-
+/**
+ * Interceptor which checks for errors and executes different actions depending on the error.
+ */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService, private router: Router, private alertService: AlertService) {}

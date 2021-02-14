@@ -1,5 +1,6 @@
-import {KanjiCard} from './kanji.card';
-
+/**
+ * Class for a Kanji List.
+ */
 export class KanjiList {
   listName: string;
   createDate: string;

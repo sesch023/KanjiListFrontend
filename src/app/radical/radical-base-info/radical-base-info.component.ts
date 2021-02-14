@@ -3,6 +3,9 @@ import {Radical} from '../../../supportClasses/radical';
 import {Backend} from '../../../backend/backend';
 import {HttpClient} from '@angular/common/http';
 
+/**
+ * Shows the basic information of a radical.
+ */
 @Component({
   selector: 'app-radical-base-info',
   templateUrl: './radical-base-info.component.html',
@@ -18,11 +21,17 @@ export class RadicalBaseInfoComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Sets the info.
+   */
   setInfo(): void {
     this.meanings = this.radical.meanings.join(', ');
     this.loading = false;
   }
 
+  /**
+   * Inits the component.
+   */
   ngOnInit(): void {
     if (!this.radical){
       this.backend.getRadical(this.radicalID, this.http).subscribe((radical: Radical) => {

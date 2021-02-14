@@ -1,3 +1,6 @@
+/**
+ * Class for a radical.
+ */
 export class Radical {
   _id: string;
   meanings: Array<string>;

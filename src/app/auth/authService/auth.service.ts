@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 import config from '../../../config';
 import {CookieService} from 'ngx-cookie-service';
 
+/**
+ * Authentication Service, which can login or logout a user.
+ */
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<string>;
@@ -15,10 +18,16 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
+  /**
+   * Observable on the logged in state of the user.
+   */
   public get currentUserValue(): string {
     return this.currentUserSubject.value;
   }
 
+  /**
+   * Log a user in with the given mail and password via the backend.
+   */
   login(email, password): Observable<string> {
     if (!this.currentUserValue) {
       return this.http.post<any>(`${config.apiUrl}/api/login`, {email, password}, {withCredentials: true})
@@ -32,12 +41,18 @@ export class AuthenticationService {
     }
   }
 
+  /**
+   * Logs a user out with the frontend cookies only.
+   */
   logoutLocal(): void {
     this.cookieService.delete('currentUserMail');
     this.cookieService.deleteAll();
     this.currentUserSubject.next(null);
   }
 
+  /**
+   * Logs a user out with the backend.
+   */
   logout(): Observable<void> {
     if (this.currentUserValue) {
       return this.http.post<any>(`${config.apiUrl}/api/logout`, {}, {withCredentials: true})

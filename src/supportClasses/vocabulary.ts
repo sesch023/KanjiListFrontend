@@ -1,3 +1,6 @@
+/**
+ * Class for vocabulary.
+ */
 import {JLPTLevel, VocabularyType} from './kanji.enums';
 
 export class Vocabulary {

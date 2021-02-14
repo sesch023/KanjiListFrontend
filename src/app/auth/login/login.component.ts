@@ -6,6 +6,9 @@ import {first} from 'rxjs/operators';
 import {AlertService} from '../../misc/alertService/alert.service';
 
 
+/**
+ * A Component for logging in a user.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,23 +28,26 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {}
 
+  /**
+   * Initialize the login form.
+   */
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(8)]]
     });
 
-    // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/dashboard';
   }
 
+  /**
+   * Submits the Form with the current values.
+   */
   onSubmit(): void {
     this.submitted = true;
 
-    // reset alerts on submit
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.loginForm.valid) {
       this.loading = true;
       this.authenticationService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)

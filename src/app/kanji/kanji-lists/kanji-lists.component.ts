@@ -8,6 +8,9 @@ import {AlertService} from '../../misc/alertService/alert.service';
 import {MatDialog} from '@angular/material/dialog';
 import {KanjiCard} from '../../../supportClasses/kanji.card';
 
+/**
+ * Component for showing kanji lists.
+ */
 @Component({
   selector: 'app-kanji-lists',
   templateUrl: './kanji-lists.component.html',
@@ -25,6 +28,9 @@ export class KanjiListsComponent implements OnInit {
     this.router = router;
   }
 
+  /**
+   * Removes the Kanjilist with a dialog.
+   */
   removeKanjiList(id: string): void {
     const dialogRef = this.utils.createRemoveDialog(this.dialog, 'Are you sure?');
 
@@ -38,12 +44,18 @@ export class KanjiListsComponent implements OnInit {
     });
   }
 
+  /**
+   * Adds a kanji list.
+   */
   addKanjiList(): void {
     this.backend.addKanjiList('New List', this.http).subscribe((listID) => {
       this.router.navigate([`/kanjilists/${listID}`]);
     });
   }
 
+  /**
+   * Gets the Data of the KanjiLists.
+   */
   getData(): void {
     this.loading = true;
     this.backend.getKanjiLists(this.http).subscribe((data: Array<KanjiList>) => {

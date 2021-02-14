@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {AlertService} from '../alertService/alert.service';
 
-
+/**
+ * Component which shows a alert given by the alert service.
+ */
 @Component({ selector: 'app-alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
   private subscription: Subscription;

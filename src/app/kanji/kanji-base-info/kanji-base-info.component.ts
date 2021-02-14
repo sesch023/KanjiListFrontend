@@ -3,6 +3,9 @@ import {Kanji} from '../../../supportClasses/kanji';
 import {HttpClient} from '@angular/common/http';
 import {Backend} from '../../../backend/backend';
 
+/**
+ * Component for showing basic information of a kanji.
+ */
 @Component({
   selector: 'app-kanji-base-info',
   templateUrl: './kanji-base-info.component.html',
@@ -20,6 +23,9 @@ export class KanjiBaseInfoComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Set the Basic information.
+   */
   setInfo(): void {
     this.meanings = this.kanji.meanings.join(', ');
     this.onReadings = this.kanji.onReadings.join(', ');
@@ -27,6 +33,9 @@ export class KanjiBaseInfoComponent implements OnInit {
     this.loading = false;
   }
 
+  /**
+   * Inits the Basic info with either a kanji object or kanji id.
+   */
   ngOnInit(): void {
     if (!this.kanji){
       this.backend.getKanji(this.kanjiID, this.http).subscribe((kanji: Kanji) => {

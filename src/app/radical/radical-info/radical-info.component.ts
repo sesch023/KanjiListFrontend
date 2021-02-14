@@ -5,6 +5,9 @@ import {Radical} from '../../../supportClasses/radical';
 import {Backend} from '../../../backend/backend';
 import {Kanji} from '../../../supportClasses/kanji';
 
+/**
+ * Complex info of a radical.
+ */
 @Component({
   selector: 'app-radical-info',
   templateUrl: './radical-info.component.html',
@@ -19,6 +22,9 @@ export class RadicalInfoComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
+  /**
+   * Gets Information of the radical and the kanji with this radical.
+   */
   ngOnInit(): void {
     this.radicalID = this.route.snapshot.paramMap.get('id');
     this.backend.getRadical(this.radicalID, this.http).subscribe((radical: Radical) => {
