@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {AlertService} from '../../misc/alertService/alert.service';
 import {MatDialog} from '@angular/material/dialog';
 import {KanjiCard} from '../../../supportClasses/kanji.card';
+import config from '../../../config';
 
 /**
  * Component for showing kanji lists.
@@ -23,6 +24,7 @@ export class KanjiListsComponent implements OnInit {
   listDue: Array<number> = [];
   router: Router;
   backend = Backend;
+  config = config;
 
   constructor(private http: HttpClient, router: Router, private alertService: AlertService, private dialog: MatDialog) {
     this.router = router;

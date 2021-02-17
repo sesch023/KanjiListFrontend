@@ -3,6 +3,7 @@ import {AuthenticationService} from './auth/authService/auth.service';
 import {Router} from '@angular/router';
 import {AlertService} from './misc/alertService/alert.service';
 import {first} from 'rxjs/operators';
+import config from '../config';
 
 /**
  * Main Component of the application.
@@ -15,6 +16,7 @@ import {first} from 'rxjs/operators';
 export class AppComponent {
   title = 'KanjiListFrontend';
   currentUser: string;
+  config = config;
 
   constructor(
      private authenticationService: AuthenticationService,

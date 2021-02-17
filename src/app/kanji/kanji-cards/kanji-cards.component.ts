@@ -17,6 +17,7 @@ export class KanjiCardsComponent implements OnInit {
   utils = Utils;
   loading = true;
   data: Array<KanjiCard>;
+  config = config;
 
   constructor(private http: HttpClient) { }
 

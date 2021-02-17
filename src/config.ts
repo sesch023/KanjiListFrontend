@@ -1,5 +1,5 @@
 export default {
-  apiUrl: 'http://localhost:8000',
+  apiUrl: 'https://jupiter.fh-swf.de/kanjisensei',
   vocabularyLevels: {
     0: 'New G1',
     0.1: 'New G2',

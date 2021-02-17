@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import config from '../../../config';
 
 /**
  * Simple not found component.
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./not-found.component.css']
 })
 export class NotFoundComponent {
+  config = config;
 
   constructor() { }
 }

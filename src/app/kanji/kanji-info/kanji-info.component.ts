@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GradeLevel} from '../../../supportClasses/kanji.enums';
 import {KanjiList} from '../../../supportClasses/kanji.list';
+import config from '../../../config';
 
 /**
  * Complex dictionary info of a kanji.
@@ -25,6 +26,7 @@ export class KanjiInfoComponent implements OnInit {
   kanjiLists: Array<KanjiList>;
   gradeLevel = '-';
   backend = Backend;
+  config = config;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 

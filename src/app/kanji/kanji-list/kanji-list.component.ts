@@ -8,6 +8,7 @@ import {ConfirmationDialogComponent} from '../../dialog/confirmation-dialog/conf
 import {MatDialog} from '@angular/material/dialog';
 import {Utils} from '../../../utils/utils';
 import {KanjiCard} from '../../../supportClasses/kanji.card';
+import config from '../../../config';
 
 /**
  * Component for a kanji list.
@@ -24,6 +25,7 @@ export class KanjiListComponent implements OnInit {
   router: Router;
   backend = Backend;
   utils = Utils;
+  config = config;
 
   constructor(
     private http: HttpClient,

@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" *ngIf="currentUser" href="/dashboard">Kanji 先生</a>
-  <a class="navbar-brand" *ngIf="!currentUser" href="/">Kanji 先生</a>
+  <a class="navbar-brand" *ngIf="currentUser" [href]="config.apiUrl + '/dashboard'">Kanji 先生</a>
+  <a class="navbar-brand" *ngIf="!currentUser" [href]="config.apiUrl">Kanji 先生</a>
   <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
   <!-- Navbar Search-->
   <app-search-form-top  *ngIf="currentUser" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></app-search-form-top>

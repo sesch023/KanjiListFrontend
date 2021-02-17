@@ -9,7 +9,7 @@
     </div>
     <div>
       <div *ngIf="data.kanjiCards.length === 0">
-        <img class="noResultImg" alt="No Results" src="../../../assets/no_results.gif"/>
+        <img class="noResultImg" alt="No Results" [src]="config.apiUrl + '/assets/no_results.gif'"/>
       </div>
       <app-kanji-card-list-info *ngFor="let item of data.kanjiCards" [id]="item" (cardRemoved)="onCardRemoved()"></app-kanji-card-list-info>
     </div>

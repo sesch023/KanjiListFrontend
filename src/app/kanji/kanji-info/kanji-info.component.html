@@ -77,10 +77,10 @@
       </div>
       <div class="flex-column kanjiInfoImg">
         <div *ngIf="kanji.strokeOrder">
-          <img [src]="'/api/image/' + kanji.strokeOrder + '?rendered=true'" alt="Stroke Order"/>
+          <img [src]="config.apiUrl + '/api/image/' + kanji.strokeOrder + '?rendered=true'" alt="Stroke Order"/>
         </div>
         <div *ngIf="kanji.gyousho">
-          <img [src]="'/api/image/' + kanji.gyousho + '?rendered=true'" alt="Gyousho"/>
+          <img [src]="config.apiUrl + '/api/image/' + kanji.gyousho + '?rendered=true'" alt="Gyousho"/>
         </div>
       </div>
     </div>
